@@ -1,0 +1,272 @@
+
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:22:34
+
+Se procesa el pedido
+precio id:13
+Actualiando precio, Precio unitario: 1.precio_total: 1
+Se envia el email
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:03
+
+MO>> {"status":200,"response":{"id":718279246,"preference_id":"139305690-7fd1969c-cabb-49cb-a0ec-23be23b6552d","date_created":"2018-04-27T13:35:01.000-04:00","last_updated":"2018-04-27T13:35:01.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"3","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:19
+
+MO>> {"status":200,"response":{"id":718279246,"preference_id":"139305690-7fd1969c-cabb-49cb-a0ec-23be23b6552d","date_created":"2018-04-27T13:35:01.000-04:00","last_updated":"2018-04-27T13:35:16.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":235091277,"email":"pablo.velazquez@geneos.com.ar"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3671395267,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"pending","status_detail":"pending_waiting_payment","operation_type":"regular_payment","date_approved":null,"date_created":"2018-04-27T13:35:16.000-04:00","last_modified":"2018-04-27T13:35:16.000-04:00","amount_refunded":0}],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"3","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:35
+
+PI>> {"status":200,"response":{"collection":{"id":3671395267,"site_id":"MLA","date_created":"2018-04-27T13:35:16.000-04:00","date_approved":null,"money_release_date":null,"last_modified":"2018-04-27T13:35:16.000-04:00","payer":{"id":235091277,"first_name":"Pablo","last_name":"Velazquez","phone":{"area_code":null,"number":null,"extension":""},"identification":{"type":null,"number":null},"email":"pablo.velazquez@geneos.com.ar","nickname":"@235091277"},"order_id":"3","external_reference":"3","merchant_order_id":718279246,"reason":"Brazalete probation","currency_id":"ARS","transaction_amount":2,"net_received_amount":0,"total_paid_amount":2,"shipping_cost":0,"coupon_amount":0,"coupon_fee":0,"finance_fee":0,"discount_fee":0,"coupon_id":null,"status":"pending","status_detail":"pending_waiting_payment","issuer_id":null,"installment_amount":0,"deferred_period":null,"payment_type":"ticket","marketplace":"NONE","operation_type":"regular_payment","marketplace_fee":0,"deduction_schema":null,"refunds":[],"amount_refunded":0,"last_modified_by_admin":null,"api_version":"2","concept_id":null,"concept_amount":0,"internal_metadata":{"tags":["payment_option_id-rapipago"],"processed_by":"checkout-off-v1"},"collector":{"id":139305690,"first_name":"Rosario","last_name":"Al Costo SRL","phone":{"area_code":null,"number":"03416919999","extension":""},"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"}}}}
+MO>> {"status":200,"response":{"id":718279246,"preference_id":"139305690-7fd1969c-cabb-49cb-a0ec-23be23b6552d","date_created":"2018-04-27T13:35:01.000-04:00","last_updated":"2018-04-27T13:35:19.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":235091277,"email":"pablo.velazquez@geneos.com.ar"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3671395267,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"pending","status_detail":"pending_waiting_payment","operation_type":"regular_payment","date_approved":null,"date_created":"2018-04-27T13:35:16.000-04:00","last_modified":"2018-04-27T13:35:16.000-04:00","amount_refunded":0}],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"3","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+Se actualiza estado del pago
+ID Servicio pago: 3671395267
+Se procesa el pedido a estado: 0
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:35
+
+precio id:21
+Actualiando precio, Precio unitario: 2.precio_total: 2
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:54:35
+
+TP>> {"StatusCode":-1,"StatusMessage":"APROBADA","AuthorizationKey":"73d47415-47db-379c-6640-c5151980db18","EncodingMethod":"XML","Payload":{"Answer":{"DATETIME":"2018-04-27T14:53:50Z","CURRENCYNAME":"Peso Argentino","PAYMENTMETHODNAME":"VISA","TICKETNUMBER":"3507","AUTHORIZATIONCODE":"003683","CARDNUMBERVISIBLE":"4937XXXXXXXX0748","BARCODE":"","OPERATIONID":"4","COUPONEXPDATE":"","COUPONSECEXPDATE":"","COUPONSUBSCRIBER":"","BARCODETYPE":"","ASSOCIATEDDOCUMENTATION":"","INSTALLMENTPAYMENTS":"1","OPERATIONNUMBER":"20561350","CFT":"0.00","TEA":"0.00"},"Request":{"MERCHANT":"4742","OPERATIONID":"4","AMOUNT":"2.00","CURRENCYCODE":"32","AMOUNTBUYER":"2.00","BANKID":"2","PROMOTIONID":"1684425"}}}
+Se actualiza estado del pago
+Se procesa el pedido
+precio id:15
+Actualiando precio, Precio unitario: 2.precio_total: 2
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:56:23
+
+MO>> {"status":200,"response":{"id":718300583,"preference_id":"139305690-998c53be-a017-4d4d-8304-65e330e1a3fb","date_created":"2018-04-27T13:56:20.000-04:00","last_updated":"2018-04-27T13:56:20.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"5","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:57:19
+
+MO>> {"status":200,"response":{"id":718300583,"preference_id":"139305690-998c53be-a017-4d4d-8304-65e330e1a3fb","date_created":"2018-04-27T13:56:20.000-04:00","last_updated":"2018-04-27T13:57:17.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":235091277,"email":"pablo.velazquez@geneos.com.ar"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3671414033,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"approved","status_detail":"accredited","operation_type":"regular_payment","date_approved":"2018-04-27T13:57:16.000-04:00","date_created":"2018-04-27T13:57:14.000-04:00","last_modified":"2018-04-27T13:57:16.000-04:00","amount_refunded":0}],"paid_amount":2,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"5","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:57:24
+
+PI>> {"status":200,"response":{"collection":{"id":3671414033,"site_id":"MLA","date_created":"2018-04-27T13:57:14.000-04:00","date_approved":"2018-04-27T13:57:16.000-04:00","money_release_date":"2018-05-11T13:57:16.000-04:00","last_modified":"2018-04-27T13:57:16.000-04:00","payer":{"id":235091277,"first_name":"Pablo","last_name":"Velazquez","phone":{"area_code":null,"number":null,"extension":""},"identification":{"type":"DNI","number":"28059056"},"email":"pablo.velazquez@geneos.com.ar","nickname":"@235091277"},"order_id":"5","external_reference":"5","merchant_order_id":718300583,"reason":"Brazalete probation","currency_id":"ARS","transaction_amount":2,"net_received_amount":1.89,"total_paid_amount":2,"shipping_cost":0,"coupon_amount":0,"coupon_fee":0,"finance_fee":0,"discount_fee":0,"coupon_id":null,"status":"approved","status_detail":"accredited","installments":1,"issuer_id":1,"installment_amount":2,"deferred_period":null,"payment_type":"credit_card","marketplace":"NONE","operation_type":"regular_payment","transaction_order_id":null,"statement_descriptor":"WWW.MERCADOPAGO.COM","cardholder":{"name":"javier imhoff","identification":{"number":"28059056","type":"DNI"}},"authorization_code":"005469","marketplace_fee":0,"deduction_schema":null,"refunds":[],"amount_refunded":0,"last_modified_by_admin":null,"api_version":"2","concept_id":null,"concept_amount":0,"internal_metadata":{"processed_by":"checkout-off-v1"},"collector":{"id":139305690,"first_name":"Rosario","last_name":"Al Costo SRL","phone":{"area_code":null,"number":"03416919999","extension":""},"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"}}}}
+MO>> {"status":200,"response":{"id":718300583,"preference_id":"139305690-998c53be-a017-4d4d-8304-65e330e1a3fb","date_created":"2018-04-27T13:56:20.000-04:00","last_updated":"2018-04-27T13:57:20.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":235091277,"email":"pablo.velazquez@geneos.com.ar"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3671414033,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"approved","status_detail":"accredited","operation_type":"regular_payment","date_approved":"2018-04-27T13:57:16.000-04:00","date_created":"2018-04-27T13:57:14.000-04:00","last_modified":"2018-04-27T13:57:16.000-04:00","amount_refunded":0}],"paid_amount":2,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"5","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+Se actualiza estado del pago
+ID Servicio pago: 3671414033
+Se procesa el pedido a estado: 1
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:57:24
+
+precio id:21
+Actualiando precio, Precio unitario: 2.precio_total: 2
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-04-27 16:10:08
+
+MO>> {"status":200,"response":{"id":718339516,"preference_id":"139305690-fa2f188c-ac57-42e2-b9fa-d654f3155ea8","date_created":"2018-04-27T15:10:05.000-04:00","last_updated":"2018-04-27T15:10:05.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"},{"category_id":null,"currency_id":"ARS","description":"Envio a domicilio por OCASA","id":"100","picture_url":null,"quantity":1,"unit_price":395,"title":"Envio a domicilio"}],"marketplace":"NONE","shipments":[],"external_reference":"6","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":397}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 16:11:39
+
+MO>> {"status":200,"response":{"id":718360493,"preference_id":"139305690-d8e5d7a5-fec1-4e5d-ac04-c78fb9d58fac","date_created":"2018-04-27T15:10:51.000-04:00","last_updated":"2018-04-27T15:10:51.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"},{"category_id":null,"currency_id":"ARS","description":"Envio a domicilio por OCASA","id":"100","picture_url":null,"quantity":1,"unit_price":395,"title":"Envio a domicilio"}],"marketplace":"NONE","shipments":[],"external_reference":"6","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":397}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 16:55:03
+
+Se procesa el pedido
+precio id:13
+Actualiando precio, Precio unitario: 1.precio_total: 1
+Se envia el email
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:03:27
+
+MO>> {"status":200,"response":{"id":718404444,"preference_id":"139305690-db45d94a-d38d-4fc8-a364-5c84e8db63ae","date_created":"2018-04-27T16:03:25.000-04:00","last_updated":"2018-04-27T16:03:25.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"8","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:04:46
+
+MO>> {"status":200,"response":{"id":718404444,"preference_id":"139305690-db45d94a-d38d-4fc8-a364-5c84e8db63ae","date_created":"2018-04-27T16:03:25.000-04:00","last_updated":"2018-04-27T16:04:44.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":49489718,"email":"silifer15@hotmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3671591042,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"approved","status_detail":"accredited","operation_type":"regular_payment","date_approved":"2018-04-27T16:04:43.000-04:00","date_created":"2018-04-27T16:04:42.000-04:00","last_modified":"2018-04-27T16:04:43.000-04:00","amount_refunded":0}],"paid_amount":2,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"8","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:04:51
+
+PI>> {"status":200,"response":{"collection":{"id":3671591042,"site_id":"MLA","date_created":"2018-04-27T16:04:42.000-04:00","date_approved":"2018-04-27T16:04:43.000-04:00","money_release_date":"2018-05-11T16:04:43.000-04:00","last_modified":"2018-04-27T16:04:43.000-04:00","payer":{"id":49489718,"first_name":"silvia","last_name":"fernandez","phone":{"area_code":"0341","number":"4243876","extension":""},"identification":{"type":"DNI","number":"28059056"},"email":"silifer15@hotmail.com","nickname":"SILIFER15"},"order_id":"8","external_reference":"8","merchant_order_id":718404444,"reason":"Brazalete probation","currency_id":"ARS","transaction_amount":2,"net_received_amount":1.89,"total_paid_amount":2,"shipping_cost":0,"coupon_amount":0,"coupon_fee":0,"finance_fee":0,"discount_fee":0,"coupon_id":null,"status":"approved","status_detail":"accredited","installments":1,"issuer_id":1,"installment_amount":2,"deferred_period":null,"payment_type":"credit_card","marketplace":"NONE","operation_type":"regular_payment","transaction_order_id":null,"statement_descriptor":"WWW.MERCADOPAGO.COM","cardholder":{"name":"javier imhoff","identification":{"number":"28059056","type":"DNI"}},"authorization_code":"003502","marketplace_fee":0,"deduction_schema":null,"refunds":[],"amount_refunded":0,"last_modified_by_admin":null,"api_version":"2","concept_id":null,"concept_amount":0,"internal_metadata":{"processed_by":"checkout-off-v1"},"collector":{"id":139305690,"first_name":"Rosario","last_name":"Al Costo SRL","phone":{"area_code":null,"number":"03416919999","extension":""},"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"}}}}
+MO>> {"status":200,"response":{"id":718404444,"preference_id":"139305690-db45d94a-d38d-4fc8-a364-5c84e8db63ae","date_created":"2018-04-27T16:03:25.000-04:00","last_updated":"2018-04-27T16:04:47.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":49489718,"email":"silifer15@hotmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3671591042,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"approved","status_detail":"accredited","operation_type":"regular_payment","date_approved":"2018-04-27T16:04:43.000-04:00","date_created":"2018-04-27T16:04:42.000-04:00","last_modified":"2018-04-27T16:04:43.000-04:00","amount_refunded":0}],"paid_amount":2,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"8","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/web\/productos\/ipnmp","total_amount":2}}
+Se actualiza estado del pago
+ID Servicio pago: 3671591042
+Se procesa el pedido a estado: 1
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:04:51
+
+precio id:21
+Actualiando precio, Precio unitario: 2.precio_total: 2
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:09:58
+
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-04-30 16:25:31
+
+Se procesa el pedido
+precio id:13
+Actualiando precio, Precio unitario: 1.precio_total: 1
+Se envia el email
+ 
+############################
+ Fecha y Hora: 2018-05-02 10:41:19
+
+Se procesa el pedido
+precio id:13
+Actualiando precio, Precio unitario: 1.precio_total: 1
+Se envia el email
+ 
+############################
+ Fecha y Hora: 2018-05-03 09:36:42
+
+TP>> {"StatusCode":-1,"StatusMessage":"APROBADA","AuthorizationKey":"de16e02e-4bbe-11d2-378c-97026ae958dc","EncodingMethod":"XML","Payload":{"Answer":{"DATETIME":"2018-05-03T09:35:57Z","CURRENCYNAME":"Peso Argentino","PAYMENTMETHODNAME":"VISA","TICKETNUMBER":"7612","AUTHORIZATIONCODE":"003078","CARDNUMBERVISIBLE":"4937XXXXXXXX0748","BARCODE":"","OPERATIONID":"11","COUPONEXPDATE":"","COUPONSECEXPDATE":"","COUPONSUBSCRIBER":"","BARCODETYPE":"","ASSOCIATEDDOCUMENTATION":"","INSTALLMENTPAYMENTS":"1","OPERATIONNUMBER":"20699993","CFT":"0.00","TEA":"0.00"},"Request":{"MERCHANT":"4742","OPERATIONID":"11","AMOUNT":"2.00","CURRENCYCODE":"32","AMOUNTBUYER":"2.00","BANKID":"2","PROMOTIONID":"1789035"}}}
+Se actualiza estado del pago
+Se procesa el pedido
+precio id:15
+Actualiando precio, Precio unitario: 2.precio_total: 2
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-05-03 12:35:27
+
+TP>> {"StatusCode":-1,"StatusMessage":"APROBADA","AuthorizationKey":"ac64aef1-84a0-792c-7a20-0c1e760e2a7a","EncodingMethod":"XML","Payload":{"Answer":{"DATETIME":"2018-05-03T12:34:42Z","CURRENCYNAME":"Peso Argentino","PAYMENTMETHODNAME":"VISA","TICKETNUMBER":"7816","AUTHORIZATIONCODE":"003956","CARDNUMBERVISIBLE":"4937XXXXXXXX0748","BARCODE":"","OPERATIONID":"12","COUPONEXPDATE":"","COUPONSECEXPDATE":"","COUPONSUBSCRIBER":"","BARCODETYPE":"","ASSOCIATEDDOCUMENTATION":"","INSTALLMENTPAYMENTS":"1","OPERATIONNUMBER":"20704309","CFT":"0.00","TEA":"0.00"},"Request":{"MERCHANT":"4742","OPERATIONID":"12","AMOUNT":"3.00","CURRENCYCODE":"32","AMOUNTBUYER":"3.00","BANKID":"2","PROMOTIONID":"1789035"}}}
+Se actualiza estado del pago
+Se procesa el pedido
+precio id:15
+Actualiando precio, Precio unitario: 2.precio_total: 2
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:01:00
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:01:02
+
+MO>> {"status":200,"response":{"id":722970543,"preference_id":"139305690-b226a894-0246-4691-90c2-a6cb91161974","date_created":"2018-05-04T13:00:59.000-04:00","last_updated":"2018-05-04T13:00:59.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"13","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:08
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:10
+
+MO>> {"status":200,"response":{"id":722962560,"preference_id":"139305690-7dfd5b9d-cf1c-4444-89df-34877f96ceb3","date_created":"2018-05-04T13:02:00.000-04:00","last_updated":"2018-05-04T13:02:10.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":142524578,"email":"pablocho88@gmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3692658941,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"pending","status_detail":"pending_waiting_payment","operation_type":"regular_payment","date_approved":null,"date_created":"2018-05-04T13:02:09.000-04:00","last_modified":"2018-05-04T13:02:09.000-04:00","amount_refunded":0}],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"13","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:10
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:12
+
+MO>> {"status":200,"response":{"id":722962560,"preference_id":"139305690-7dfd5b9d-cf1c-4444-89df-34877f96ceb3","date_created":"2018-05-04T13:02:00.000-04:00","last_updated":"2018-05-04T13:02:10.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":142524578,"email":"pablocho88@gmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3692658941,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"pending","status_detail":"pending_waiting_payment","operation_type":"regular_payment","date_approved":null,"date_created":"2018-05-04T13:02:09.000-04:00","last_modified":"2018-05-04T13:02:09.000-04:00","amount_refunded":0}],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"13","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":2}}
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:12
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:17
+
+PI>> {"status":200,"response":{"collection":{"id":3692658941,"site_id":"MLA","date_created":"2018-05-04T13:02:09.000-04:00","date_approved":null,"money_release_date":null,"last_modified":"2018-05-04T13:02:09.000-04:00","payer":{"id":142524578,"first_name":"Pablo","last_name":"Velazquez","phone":{"area_code":" ","number":"249 4361677","extension":""},"identification":{"type":null,"number":null},"email":"pablocho88@gmail.com","nickname":"PABLOCHO88"},"order_id":"13","external_reference":"13","merchant_order_id":722962560,"reason":"Brazalete probation","currency_id":"ARS","transaction_amount":2,"net_received_amount":0,"total_paid_amount":2,"shipping_cost":0,"coupon_amount":0,"coupon_fee":0,"finance_fee":0,"discount_fee":0,"coupon_id":null,"status":"pending","status_detail":"pending_waiting_payment","issuer_id":null,"installment_amount":0,"deferred_period":null,"payment_type":"ticket","marketplace":"NONE","operation_type":"regular_payment","marketplace_fee":0,"deduction_schema":null,"refunds":[],"amount_refunded":0,"last_modified_by_admin":null,"api_version":"2","concept_id":null,"concept_amount":0,"internal_metadata":{"tags":["payment_option_id-rapipago"],"processed_by":"checkout-off-v1"},"collector":{"id":139305690,"first_name":"Rosario","last_name":"Al Costo SRL","phone":{"area_code":null,"number":"03416919999","extension":""},"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"}}}}
+MO>> {"status":200,"response":{"id":722962560,"preference_id":"139305690-7dfd5b9d-cf1c-4444-89df-34877f96ceb3","date_created":"2018-05-04T13:02:00.000-04:00","last_updated":"2018-05-04T13:02:12.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":142524578,"email":"pablocho88@gmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3692658941,"transaction_amount":2,"total_paid_amount":2,"shipping_cost":0,"currency_id":"ARS","status":"pending","status_detail":"pending_waiting_payment","operation_type":"regular_payment","date_approved":null,"date_created":"2018-05-04T13:02:09.000-04:00","last_modified":"2018-05-04T13:02:09.000-04:00","amount_refunded":0}],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":2,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"13","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":2}}
+Se actualiza estado del pago
+ID Servicio pago: 3692658941
+Se procesa el pedido a estado: 0
+precio id:21
+Actualiando precio, Precio unitario: 2.precio_total: 2
+Enviando mail de esperando pago...
+ 
+############################
+ Fecha y Hora: 2018-05-06 21:18:31
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-06 21:18:32
+
+MO>> {"status":200,"response":{"id":724368525,"preference_id":"139305690-bb478c1f-3316-4210-9bdc-ecf19c8fcb9a","date_created":"2018-05-06T20:18:30.000-04:00","last_updated":"2018-05-06T20:18:30.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Garmin Forerunner (entrenamiento)","currency_id":"ARS","description":"Garmin FR 35 + HRM","id":"23","picture_url":"fr 3586.jpg","quantity":1,"unit_price":6220,"title":"Garmin FR 35 + HRM"},{"category_id":null,"currency_id":"ARS","description":"Envio a domicilio por OCASA","id":"100","picture_url":null,"quantity":1,"unit_price":446,"title":"Envio a domicilio"}],"marketplace":"NONE","shipments":[],"external_reference":"14","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":6666}}
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:17:56
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:17:59
+
+MO>> {"status":200,"response":{"id":725881196,"preference_id":"139305690-d9796603-3f82-4730-9b04-714c9ebbc02f","date_created":"2018-05-08T15:17:54.000-04:00","last_updated":"2018-05-08T15:17:54.000-04:00","application_id":null,"status":"opened","site_id":"MLA","payer":null,"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[],"paid_amount":0,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":100,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"16","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":100}}
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:17
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:19
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:20
+
+MO>> {"status":200,"response":{"id":725881196,"preference_id":"139305690-d9796603-3f82-4730-9b04-714c9ebbc02f","date_created":"2018-05-08T15:17:54.000-04:00","last_updated":"2018-05-08T15:19:18.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":2192931,"email":"javierimhoff22@hotmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3705379778,"transaction_amount":100,"total_paid_amount":100,"shipping_cost":0,"currency_id":"ARS","status":"approved","status_detail":"accredited","operation_type":"regular_payment","date_approved":"2018-05-08T15:19:16.000-04:00","date_created":"2018-05-08T15:19:13.000-04:00","last_modified":"2018-05-08T15:19:16.000-04:00","amount_refunded":0}],"paid_amount":100,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":100,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"16","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":100}}
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:26
+
+PI>> {"status":200,"response":{"collection":{"id":3705379778,"site_id":"MLA","date_created":"2018-05-08T15:19:13.000-04:00","date_approved":"2018-05-08T15:19:16.000-04:00","money_release_date":"2018-05-22T15:19:16.000-04:00","last_modified":"2018-05-08T15:19:16.000-04:00","payer":{"id":2192931,"first_name":"Javier","last_name":"Imhoff","phone":{"area_code":"0341","number":"4247859","extension":""},"identification":{"type":"DNI","number":"29225126"},"email":"javierimhoff22@hotmail.com","nickname":"JAVO2806"},"order_id":"16","external_reference":"16","merchant_order_id":725881196,"reason":"Brazalete probation","currency_id":"ARS","transaction_amount":100,"net_received_amount":94.62,"total_paid_amount":100,"shipping_cost":0,"coupon_amount":0,"coupon_fee":0,"finance_fee":0,"discount_fee":0,"coupon_id":null,"status":"approved","status_detail":"accredited","installments":3,"issuer_id":333,"installment_amount":33.33,"deferred_period":null,"payment_type":"credit_card","marketplace":"NONE","operation_type":"regular_payment","transaction_order_id":null,"statement_descriptor":"WWW.MERCADOPAGO.COM","cardholder":{"name":"Javier Imhoffhernan pavani","identification":{"number":"29225126","type":"DNI"}},"authorization_code":"006220","marketplace_fee":0,"deduction_schema":null,"refunds":[],"amount_refunded":0,"last_modified_by_admin":null,"api_version":"2","concept_id":null,"concept_amount":0,"internal_metadata":{"processed_by":"checkout-off-v1"},"collector":{"id":139305690,"first_name":"Rosario","last_name":"Al Costo SRL","phone":{"area_code":null,"number":"03416919999","extension":""},"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"}}}}
+MO>> {"status":200,"response":{"id":725881196,"preference_id":"139305690-d9796603-3f82-4730-9b04-714c9ebbc02f","date_created":"2018-05-08T15:17:54.000-04:00","last_updated":"2018-05-08T15:19:18.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":2192931,"email":"javierimhoff22@hotmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3705379778,"transaction_amount":100,"total_paid_amount":100,"shipping_cost":0,"currency_id":"ARS","status":"approved","status_detail":"accredited","operation_type":"regular_payment","date_approved":"2018-05-08T15:19:16.000-04:00","date_created":"2018-05-08T15:19:13.000-04:00","last_modified":"2018-05-08T15:19:16.000-04:00","amount_refunded":0}],"paid_amount":100,"refunded_amount":0,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":100,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"16","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":100}}
+Se actualiza estado del pago
+ID Servicio pago: 3705379778
+Se procesa el pedido a estado: 1
+precio id:21
+Actualiando precio, Precio unitario: 100.precio_total: 100
+Enviando mail de pago recibido...
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:26
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:26
+
+Proceso IPN
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:31
+
+PI>> {"status":200,"response":{"collection":{"id":3705379778,"site_id":"MLA","date_created":"2018-05-08T15:19:13.000-04:00","date_approved":"2018-05-08T15:19:16.000-04:00","money_release_date":"2018-05-22T15:19:16.000-04:00","last_modified":"2018-05-08T15:36:23.000-04:00","payer":{"id":2192931,"first_name":"Javier","last_name":"Imhoff","phone":{"area_code":"0341","number":"4247859","extension":""},"identification":{"type":"DNI","number":"29225126"},"email":"javierimhoff22@hotmail.com","nickname":"JAVO2806"},"order_id":"16","external_reference":"16","merchant_order_id":725881196,"reason":"Brazalete probation","currency_id":"ARS","transaction_amount":100,"net_received_amount":94.62,"total_paid_amount":100,"shipping_cost":0,"coupon_amount":0,"coupon_fee":0,"finance_fee":0,"discount_fee":0,"coupon_id":null,"status":"refunded","status_detail":"refunded","installments":3,"issuer_id":333,"installment_amount":33.33,"deferred_period":null,"payment_type":"credit_card","marketplace":"NONE","operation_type":"regular_payment","transaction_order_id":null,"statement_descriptor":"WWW.MERCADOPAGO.COM","cardholder":{"name":"Javier Imhoffhernan pavani","identification":{"number":"29225126","type":"DNI"}},"authorization_code":"006220","marketplace_fee":0,"deduction_schema":null,"refunds":[{"id":375910499,"gtw_refund_id":6917781743,"movement_id":20496550195,"collection_id":3705379778,"amount":100,"metadata":[],"source":{"id":"139305690","name":"Rosario Al Costo SRL","type":"collector"},"date_created":"2018-05-08T15:36:23.000-04:00"}],"amount_refunded":100,"last_modified_by_admin":null,"api_version":"2","concept_id":null,"concept_amount":0,"internal_metadata":{"processed_by":"checkout-off-v1"},"collector":{"id":139305690,"first_name":"Rosario","last_name":"Al Costo SRL","phone":{"area_code":null,"number":"03416919999","extension":""},"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"}}}}
+MO>> {"status":200,"response":{"id":725881196,"preference_id":"139305690-d9796603-3f82-4730-9b04-714c9ebbc02f","date_created":"2018-05-08T15:17:54.000-04:00","last_updated":"2018-05-08T15:36:26.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":2192931,"email":"javierimhoff22@hotmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3705379778,"transaction_amount":100,"total_paid_amount":100,"shipping_cost":0,"currency_id":"ARS","status":"refunded","status_detail":"refunded","operation_type":"regular_payment","date_approved":"2018-05-08T15:19:16.000-04:00","date_created":"2018-05-08T15:19:13.000-04:00","last_modified":"2018-05-08T15:36:23.000-04:00","amount_refunded":100}],"paid_amount":100,"refunded_amount":100,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":100,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"16","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":100}}
+Se actualiza estado del pago
+ID Servicio pago: 3705379778
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:34
+
+MO>> {"status":200,"response":{"id":725881196,"preference_id":"139305690-d9796603-3f82-4730-9b04-714c9ebbc02f","date_created":"2018-05-08T15:17:54.000-04:00","last_updated":"2018-05-08T15:36:26.000-04:00","application_id":null,"status":"closed","site_id":"MLA","payer":{"id":2192931,"email":"javierimhoff22@hotmail.com"},"collector":{"id":139305690,"email":"iturralde@rosarioalcosto.com.ar","nickname":"ROSARIOALCOSTO"},"sponsor_id":null,"payments":[{"id":3705379778,"transaction_amount":100,"total_paid_amount":100,"shipping_cost":0,"currency_id":"ARS","status":"refunded","status_detail":"refunded","operation_type":"regular_payment","date_approved":"2018-05-08T15:19:16.000-04:00","date_created":"2018-05-08T15:19:13.000-04:00","last_modified":"2018-05-08T15:36:23.000-04:00","amount_refunded":100}],"paid_amount":100,"refunded_amount":100,"shipping_cost":0,"cancelled":false,"items":[{"category_id":"Brazaletes","currency_id":"ARS","description":"Brazalete probation","id":"7","picture_url":null,"quantity":1,"unit_price":100,"title":"Brazalete probation"}],"marketplace":"NONE","shipments":[],"external_reference":"16","additional_info":null,"notification_url":"http:\/\/rosarioalcosto.com\/productos\/ipnmp","total_amount":100}}

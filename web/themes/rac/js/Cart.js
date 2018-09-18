@@ -71,12 +71,12 @@ var Cart = {
             var producto_id = $this.data('producto');
             var cantidad = $('.detail-input-cantidad').is(':visible') ? $('.detail-input-cantidad').val() : 1;
 
-            debugger;
+            
             if (categoria_id == '' || producto_id == '') { //|| cantidad <= 0
                 bootbox.alert("Hay un error en el formulario. Por favor, recarga la página.");
                 return false;
             } else {
-                self.addToCart(categoria_id, producto_id, cantidad);
+                self.addToCart(categoria_id, producto_id, cantidad, false);
             }
         });
 
@@ -127,19 +127,17 @@ var Cart = {
 
     },
 
-    addToCart: function(categoria_id, producto_id, cantidad) {
+    addToCart: function(categoria_id, producto_id, cantidad, incluirEnvio) {
         var self = this;
         var defer = new $.Deferred();
         cantidad = cantidad && cantidad != 0 && cantidad != '0' ? cantidad : 1;
-
-        debugger;
 
         Commons.showLoader();
         defer = $.ajax({
             url: self.settings.addToCartUrl,
             type: 'POST',
             dataType: 'json',
-            data: {categoria_id: categoria_id, producto_id: producto_id, cantidad: cantidad},
+            data: {incluirEnvio: incluirEnvio, categoria_id: categoria_id, producto_id: producto_id, cantidad: cantidad},
             parseError: true
         }).done(function(data){
             self.shoppingCartBox.html(data.menuCart);
@@ -200,10 +198,12 @@ var Cart = {
             return false;
         }
 
-        self.addToCart(categoria_id, producto_id, cantidad)
+        self.addToCart(categoria_id, producto_id, cantidad, true)
             .done(function(data){
+                //console.log($this.parents('.cart-item-row').find('.cart-item-unitario-h').val());
+                //console.log( Commons.formatPrice($this.parents('.cart-item-row').find('.cart-item-unitario-h').val()));
                 var cantidad_actual = parseInt($this.parent().find('.cart-item-cantidad').val()) + cantidad;
-                var unitario = parseInt($this.parents('.cart-item-row').find('.cart-item-unitario-h').val());
+                var unitario = $this.parents('.cart-item-row').find('.cart-item-unitario-h').val();
                 var total = cantidad_actual * unitario;
                 $this.parents('.cart-item-row').find('.cart-item-total').text(Commons.formatPrice(total));
                 $this.parent().find('.cart-item-cantidad').val(cantidad_actual);

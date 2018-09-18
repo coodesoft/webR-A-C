@@ -21,7 +21,7 @@ class SocialNav extends CWidget {
 
         $this->render('SocialNav',
             array(
-                'model' => $model
+                'model' => $model,
             )
         );
     }

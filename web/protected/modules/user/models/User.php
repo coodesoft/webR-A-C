@@ -9,6 +9,8 @@ class User extends CActiveRecord
     //TODO: Delete for next version (backward compatibility)
     const STATUS_BANED=-1;
 
+    const NO_PASSWORD = 'aaaaaa';
+
     /**
      * The followings are the available columns in table 'users':
      * @var integer $id
@@ -181,6 +183,10 @@ class User extends CActiveRecord
         ));
     }
 
+    public function isNoPassword(){
+      return !($this->password == self::NO_PASSWORD);
+    }
+
     public function getCreatetime() {
         return strtotime($this->create_at);
     }
@@ -204,6 +210,7 @@ class User extends CActiveRecord
     public static function associateCartToUser()
     {
         if (Yii::app()->user->id != 0) {
+            //Obtengo items de la session
             $cartItems = CarritoProductosWeb::model()->findAllByAttributes(
                 array(
                     'clave' => Yii::app()->session['cart_web_clave'],
@@ -212,11 +219,33 @@ class User extends CActiveRecord
             );
 
             if ($cartItems !== null) {
-                foreach ($cartItems as $item) {
-                    $item->user_id = Yii::app()->user->id;
-                    $item->save();
+                foreach ($cartItems as $unItem) {
+                    $item = CarritoProductosWeb::productoInCart($unItem->categoria_id,$unItem->producto_id,'',Yii::app()->user->id);
+                    if ($item === null) {
+                        $unItem->user_id = Yii::app()->user->id;
+                        $unItem->clave = '';
+                        $unItem->save();
+                    }
+                     //Unifico los items con los existentes para carritos pendientes de el usuario
+
+                    else {
+                        $item->cantidad += $unItem->cantidad;
+                        $unItem->delete();
+                        $item->save();
+                    }
+
                 }
             }
         }
     }
+
+    // Autenticación por google
+  	public function googleAutenticate(){
+
+  	}
+
+  	// Autenticación por facebook
+  	public function faceboolAutenticate(){
+
+  	}
 }

@@ -1,3 +1,67 @@
+@media only screen and (min-width : 1200px) {
+  .lgform-bottom{
+    position: absolute;
+    bottom: 16px;
+  }
+}
+
+.abcRioButtonIcon{
+  margin-right: -36px !important;
+}
+
+.logIn-btn{
+  width:282px !important;
+}
+
+.fb-login,
+.gl-login {
+    display: inline-block;
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+.fb-login,
+.fb-login:hover {
+    background: #6273a9 !important;
+    text-decoration:none;
+}
+
+.gl-login,
+.gl-login:hover {
+    background: #d14836 !important;
+    text-decoration:none;
+}
+
+.fb-login .icon-facebook,
+.gl-login .icon-google-plus-2{
+    font-size: 22px;
+    margin-right: 10px;
+    line-height: 26px;
+    float: left;
+}
+
+.gl-login .icon-google-plus-2{
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.fb-login .fb-login-text,
+.gl-login .gl-login-text{
+    display: block;
+    font-size:13px;
+    line-height: 28px;
+    margin-left: 25px;
+}
+
+.login-form .fb-login,
+.login-form .gl-login {
+    margin-top:15px;
+    width: 282px !important;
+    padding: 12px 30px;
+    border-radius: 4px;
+}
+
+
 .dBlock {
     display: block !important;
 }
@@ -44,10 +108,24 @@
     font-size: 12px !important;
     font-weight: bold;
     text-decoration: line-through;
+    margin-bottom: 10px;
+}
+
+.price.cuotas_final {
+    color: #c7cbca !important;
+    display: block;
+    font-size: 12px !important;
+    font-weight: bold;
 }
 
 .price.new {
     color: #f29923 !important;
+}
+
+.price.new_text {
+    color: #c7cbca !important;
+    display: block;
+    font-size: 14px !important;
 }
 
 .owl-controls.clickable {
@@ -81,7 +159,7 @@
 
 .price.cuotas {
     display: block;
-    padding: 5px 0;
+    padding: 10px 0 0 0;
     font-size: 1.3em;
     color: #f29923;
 }
@@ -272,7 +350,7 @@ h2 {
 
 .product-controls-list {
     top: 0;
-    z-index: 99999;
+    z-index: 9999;
 }
 
 .info-cell .product-controls-list {
@@ -333,15 +411,44 @@ h2 {
     padding: 20px 0 0;
 }
 
-#topSearchForm input {
-    background: rgba(0, 0, 0, 0) url(../images/lupa.png) no-repeat scroll 100.5% center;
+#searchForm input[type=text] {
     border: 2px solid #f29923;
     border-radius: 10px;
     height: 50px;
+    padding-left: 50px;
+}
+
+#searchForm {
+    position: relative;
+}
+
+#searchForm input[type=submit] {
+    background: rgba(0, 0, 0, 0) url(../images/lupa.png) no-repeat scroll 100.5% center;
+    border-radius: 10px;
+    height: 50px;
+    position:absolute;
+    width: 50px;
+    right: 0;
+    top: 0;
+    border: none;
+    color:transparent;
+    text-indent: -99999px;
 }
 
 .services-block img {
     max-width: 100%;
+}
+
+.services-block .divider-right:after {
+    display:none;
+}
+
+.services-block {
+    border-bottom: none;
+}
+
+.services-block .item {
+    padding:0;
 }
 
 .noBorders {
@@ -413,11 +520,34 @@ h2 {
     padding-bottom: 0 !important;
 }
 
+.product-view .contact-from-product {
+    font-family: Mavenpro;
+    text-transform: none;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top:10px;
+}
+
 .products-list-in-row .product-preview .detail-add-to-cart {
     bottom: 10px;
     left: auto;
     right: 15px;
 }
+
+.products-list.products-models .product-preview {
+    min-height:initial;
+    padding-bottom:0px;
+}
+
+.products-list.products-marcas .product-preview {
+    min-height: 158px;
+    padding-bottom:0px;
+}
+
+.products-list.products-marcas .product-preview .title > a {
+     min-height: 15px;
+}
+
 
 header {
     position: relative;
@@ -520,17 +650,46 @@ header {
 
 .mini-banner-slides .owl-prev {
     position: relative;
-    top: -50px;
+    top: -35px;
     left: 0;
 }
 
 .mini-banner-slides .owl-next {
     position: relative;
-    top: -50px;
+    top: -35px;
     left: 88%;
 }
 
 .cloudzoom-zoom {
-    width: 300px !important;
-    height: 300px !important;
+    width: 500px !important;
+    height: 350px !important;
 }
+
+.homeSlider .item img,
+.homeSliderRight .item img {
+    width:1170px !important;
+}
+
+.product-view .flexslider-thumb {
+    margin-top:5px;
+}
+
+.product-view .flexslider li img {
+    cursor:pointer;
+}
+
+.checkout_detail #collapseFour .bodegas {
+    margin-top: 10px;
+}
+
+#footer {
+    background-color:#f05a24;
+    background: linear-gradient(to right,  #f05a24 0%,#f05a24 50%,#f46b25 50%,#f46b25 100%);*/
+}
+
+.social-widget .social-links h3{
+    text-transform: initial;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+    

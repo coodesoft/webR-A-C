@@ -36,19 +36,24 @@ $this->pageTitle=Yii::app()->name . ' :: '.UserModule::t("Change password");
                     <div class="large-icon"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/large-icon-lock.png" alt=""></div>
                     <div class="wrap">
                         <h3>FORMULARIO DE CAMBIO DE CONTRASEÑA</h3>
-                        <?php $form=$this->beginWidget('PActiveForm', array(
-                            'id'=>'changepassword-form',
-                            'enableAjaxValidation'=>true,
-                            'clientOptions'=>array(
-                                'validateOnSubmit'=>true,
-                            ),
-                        )); ?>
+                        <?php $form=$this->beginWidget('PActiveForm', [
+                            'id'                   => 'changepassword-form',
+                            'enableAjaxValidation' => true,
+                            'clientOptions'        => [
+                                       'validateOnSubmit' => true,
+                            ],
+                        ]); ?>
                         <?php echo $form->errorSummary($model); ?>
-                        <div class="form-group">
-                            <?php echo $form->labelEx($model,'oldPassword'); ?>
-                            <?php echo $form->passwordField($model,'oldPassword', array('class' => 'form-control')); ?>
-                            <?php echo $form->error($model,'oldPassword'); ?>
-                        </div>
+
+                        <?php if($noPass){ ?>
+                          <div class="form-group">
+                              <?php
+                              echo $form->labelEx($model,'oldPassword');
+                              echo $form->passwordField($model,'oldPassword', ['class' => 'form-control']);
+                              echo $form->error($model,'oldPassword');
+                             ?>
+                          </div>
+                        <?php } ?>
                         <div class="form-group">
                             <?php echo $form->labelEx($model,'password'); ?>
                             <?php echo $form->passwordField($model,'password', array('class' => 'form-control')); ?>

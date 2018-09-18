@@ -34,19 +34,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-3 collapsed-block">
-                <h3>REDES SOCIALES<a class="expander visible-xs" href="#TabBlock-2">+</a></h3>
+            <div class="col-sm-3 col-md-3 col-lg-3 collapsed-block social-links">
+                <h3>Seguinos tambien en nuestras redes sociales<a class="expander visible-xs" href="#TabBlock-2">+</a></h3>
                 <div  class="tabBlock" id="TabBlock-2">
                     <ul class="find-us">
-                        <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-facebook-3"></span></a></li>
-                        <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-twitter-3"></span></a></li>
-                        <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-pinterest-2"></span></a></li>
-                        <li class="divider"><a href="#" class="animate-scale"><span class="icon icon-instagram"></span></a></li>
+                        <li class="divider"><a href="https://www.facebook.com/RosarioalCosto/" class="animate-scale" target="_blank"><span class="icon icon-facebook-3"></span></a></li>
+                        <li class="divider"><a href="https://twitter.com/rosarioalcosto1" class="animate-scale" target="_blank"><span class="icon icon-twitter-3" ></span></a></li>
+                        <li class="divider"><a href="https://www.instagram.com/rosarioalcosto" class="animate-scale" target="_blank"><span class="icon icon-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-3 collapsed-block contact-block">
-                <a class="dBlock">
+                <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/contacto') ?>" class="dBlock">
                     <?php echo CHtml::image(Yii::app()->theme->baseUrl . '/images/contacto.png'); ?>
                 </a>
             </div>

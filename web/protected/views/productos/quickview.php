@@ -4,34 +4,34 @@
 <?php } ?>
         <div class="">
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="large-image"> <img class = "cloudzoom" id="cloudzoom1" src = "<?php echo Commons::image('repository/' . $producto->foto, 593, 722) ?>" data-cloudzoom = "zoomImage: '<?php echo Commons::image('repository/' . $producto->foto, 600, 600) ?>', autoInside : 991" /> </div>
+                <div class="large-image"> <img class = "cloudzoom" id="cloudzoom1" src = "<?= Commons::image('repository/' . $producto->primeraFotoGaleria(), 593, 722) ?>" data-cloudzoom = "zoomImage: '<?= Commons::image('repository/' . $producto->primeraFotoGaleria(), 600, 600) ?>', autoInside : 991" /> </div>
                 <?php
                 if (count($producto->multimedia)) {
+                  //setup flexslider-thumb class when slider is needed ( > 3 items)
+                  $class = '';
+                  if ( count($producto->multimedia) > 3 )
+                    $class = 'flexslider-thumb';
                     ?>
                     <div>
-                        <div class="flexslider flexslider-thumb">
+                        <div class="flexslider <?= $class ?>">
                             <ul class="previews-list slides">
-                                <li><img class='cloudzoom-gallery' alt="#"
-                                         src="<?php echo Commons::image('repository/' . $producto->foto, 76, 92) ?>"
-                                         data-cloudzoom="useZoom: '.cloudzoom', image: '<?php echo Commons::image('repository/' . $producto->foto, 593, 722) ?>', zoomImage: '<?php echo Commons::image('repository/' . $producto->foto, 600, 600) ?>', autoInside : 991">
-                                </li>
                                 <?php
                                 foreach ($producto->multimedia as $m) {
                                     if ($m->tipo == ProductosMultimedia::TYPE_IMAGE) {
                                         ?>
                                         <li><img class='cloudzoom-gallery' alt="#"
-                                                 src="<?php echo Commons::image('repository/' . $m->url, 76, 92) ?>"
-                                                 data-cloudzoom="useZoom: '.cloudzoom', image: '<?php echo Commons::image('repository/' . $m->url, 593, 722) ?>', zoomImage: '<?php echo Commons::image('repository/' . $m->url, 600, 600) ?>'">
+                                                 src="<?= Commons::image('repository/' . $m->url, 76, 92) ?>"
+                                                 data-cloudzoom="useZoom: '.cloudzoom', image: '<?= Commons::image('repository/' . $m->url, 593, 722) ?>', zoomImage: '<?= Commons::image('repository/' . $m->url, 600, 600) ?>'">
                                         </li>
                                         <?php
                                     } else {
                                         ?>
                                         <li>
                                             <a class="various fancybox.iframe"
-                                               href="http://www.youtube.com/embed/<?php echo ProductosMultimedia::getYoutubeId($m->url) ?>?autoplay=1">
+                                               href="http://www.youtube.com/embed/<?= ProductosMultimedia::getYoutubeId($m->url) ?>?autoplay=1">
                                                 <img alt="#"
                                                      class='fancybox-video'
-                                                     src="<?php echo Yii::app()->theme->baseUrl ?>/images/video.png">
+                                                     src="<?= Yii::app()->theme->baseUrl ?>/images/video.png">
                                             </a>
                                         </li>
                                         <?php
@@ -45,23 +45,24 @@
                 }
                 ?>
             </div>
-            <div class="info-cell col-sm-<?php echo $center_cols ?> col-md-<?php echo $center_cols ?> col-lg-<?php echo $center_cols ?>">
-                <?php
+            <div class="info-cell col-sm-<?= $center_cols ?> col-md-<?= $center_cols ?> col-lg-<?= $center_cols ?>">
+                <?php/*
                 $this->widget('ext.SocialShareButton.SocialShareButton', array(
-                    'style'=>'horizontal',
-                    'networks' => array('facebook','twitter','pinterest'),
-                    'data_via'=>'', //twitter username (for twitter only, if exists else leave empty)
+                    'style'    => 'horizontal',
+                    'networks' => ['facebook','twitter','pinterest'],
+                    'data_via' => '', //twitter username (for twitter only, if exists else leave empty)
                 ));
                 ?><br>
-                <h2><?php echo $producto->etiqueta ?></h2>
+                */?>
+                <h2><?= $producto->etiqueta ?></h2>
                 <div class="clearfix"></div>
                 <?php
                 if ($producto->promocion) {
                     $this->widget('CountdownPromocion',
-                        array(
-                            'extraClass' => 'countdown_quickview',
-                            'promocion' => $producto->promocion
-                        )
+                        [
+                          'extraClass' => 'countdown_quickview',
+                          'promocion'  => $producto->promocion
+                        ]
                     );
                 }
                 ?>
@@ -72,11 +73,11 @@
                         <?php
                         if ($producto['promocion']) {
                             ?>
-                            <li><span class="label">-<?php echo $producto->promocion->porcentaje_promocion ?>%</span></li>
+                            <li><span class="label">-<?= $producto->promocion->porcentaje_promocion ?>%</span></li>
                             <?php
                         } else {
                             ?>
-                            <li><span class="label">-<?php echo $producto->oferta[0]->descuento ?>%</span></li>
+                            <li><span class="label">-<?= $producto->oferta[0]->descuento ?>%</span></li>
                             <?php
                         }
                         ?>
@@ -84,28 +85,30 @@
                 <?php } ?>
                 <div class="line-divider"></div>
                 <div class="price-part col-md-6">
-                    <span class="price lista">Precio de lista: $<?php echo Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_TARJETA_ID]['precio']) ?></span>
                     <?php
+                    if (ProductosPrecios::$PRECIO_LISTA_ID != Precios::NINGUNO)
+                      echo '<span class="price lista">Precio de lista: $'.Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_LISTA_ID]['precio']).'</span>';
+
                     if ($producto->isOferta === true) {
-                        ?>
-                        <?php
-                        if ($producto['promocion']) {
-                            ?>
-                            <span class="price old">$<?php echo Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_AUX_ID]['precio']) ?></span>
-                            <?php
-                        } else {
-                            ?>
-                            <span class="price old">$<?php echo Commons::formatPrice($producto->oferta[0]['producto']->precio[ProductosPrecios::PRECIO_AUX_ID]) ?></span>
-                            <?php
-                        }
-                        ?>
-                        <?php
+                       //if ($producto['promocion']) {
+                      //      if ($producto->precio[ProductosPrecios::$PRECIO_AUX_ID]['precio'] > 0)
+                      //        echo '<span class="price old">$'.Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_AUX_ID]['precio']).'</span>';
+                      //  } else {
+                      if ($producto->precio[ProductosPrecios::PRECIO_AUX_ID]['precio'] > 0)
+                        echo '<span class="price old">$'.Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_AUX_ID]['precio']).'</span>';
+                      //  }
                     }
-                    ?>
-                    <span class="price new">$<?php echo Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio']) ?></span>
-                    <?php if (isset($producto->cuotas_sobre_precio)) { ?>
-                        <span class="price cuotas"><?php echo $producto->cuotas_sobre_precio ?> x $<?php echo Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio, 2) ?></span>
+
+                    if (ProductosPrecios::$PRECIO_ONLINE_ID != Precios::NINGUNO)
+                      echo '<span class="price new_text">Precio Contado/Efectivo: </span>';
+                      echo '<span class="price new">$'.Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_ONLINE_ID]['precio']).'</span>';
+
+                    if (isset($producto->cuotas_sobre_precio) && $producto->cuotas_sobre_precio != 1) { ?>
+                        <span class="price cuotas"><?= $producto->cuotas_sobre_precio ?> x $<?= Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio, 2) ?></span>
+                         <span class="price cuotas_final">(Precio financiado $<?= Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_TARJETA_ID]['precio'], 2) ?>)</span>
+
                     <?php } ?>
+                    <a href="<?= Yii::app()->createAbsoluteUrl('site/contactoProducto/'.$categoria_id.'/'.$producto_id) ?>" class="btn btn-mega btn-md contact-from-product">Consultar Producto</a>
                 </div>
                 <div class="quantity-add-part col-md-6">
                     <div class="option"> <b>Cantidad:</b>
@@ -115,74 +118,78 @@
                             <span class="input-group-addon">+</span> </div>
                     </div>
                     <div class="clearfix visible-xs"></div>
-                    <input type="hidden" value="<?php echo $categoria_id ?>" id="detail_categoria_id" />
-                    <input type="hidden" value="<?php echo $producto_id ?>" id="detail_producto_id" />
-                    <?php echo CHtml::hiddenField('productLevel', $producto->stock, array('data-categoria' => $categoria_id, 'class' => 'detail-input-cantidad', 'data-producto' => $producto_id)); ?>
-                    <button class="btn btn-mega btn-md detail-add-to-cart" type="submit" data-categoria="<?php echo $categoria_id ?>" data-producto="<?php echo $producto_id ?>">Comprar</button>
+                    <input type="hidden" value="<?= $categoria_id ?>" id="detail_categoria_id" />
+                    <input type="hidden" value="<?= $producto_id ?>" id="detail_producto_id" />
+                    <?= CHtml::hiddenField('productLevel', $producto->stock, array('data-categoria' => $categoria_id, 'class' => 'detail-input-cantidad', 'data-producto' => $producto_id)); ?>
+                    <button <?php if ($producto->stock <=0) echo 'disabled="disabled"'; ?> class="btn btn-mega btn-md detail-add-to-cart" type="submit" data-categoria="<?= $categoria_id ?>" data-producto="<?= $producto_id ?>">Comprar</button>
                 </div>
-
-                <div class="clearfix"><br /></div>
+                <div class="clearfix"></div>
                 <div class="line-divider"></div>
                 <?php if ($fancy !== true) { ?>
-                    <h6>Medios de pago - Consultá promociones</h6>
-                    <ul class="payment-list">
-                        <li><a href="http://www.todopago.com.ar/promociones-vigentes" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/icon-payment-01.png" width="54" height="40" alt="" style="alignment-adjust: central;"></a></li>
-                        <li><a href="https://www.mercadopago.com.ar/promociones" data-fancybox-type="iframe" class="fancybox fancyMp"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/icon-payment-02.png" width="54" height="40" alt=""></a></li>
-                    </ul>
-                    <div class="clearfix"><br /></div>
-                    <div class="line-divider"></div>
+                  <h6>Medios de pago - Consultá promociones</h6>
+                <?php $this->widget('HtmlList',[
+                    'elements' => PedidoOnline::getFormasPagoData(['img','enlacePromo']), // se hace una lista de las formas de pago con solo sus img
+                    'ul' => ['class' => 'payment-list'],
+                  ]);
+                  ?>
+                <div class="clearfix"><br /></div>
+                <div class="line-divider"></div>
                 <?php } ?>
-                <?php if (isset($producto->precio[ProductosPrecios::PRECIO_CONTADO_ID]['precio'])) { ?>
+                <?php if (ProductosPrecios::$PRECIO_CONTADO_ID != Precios::NINGUNO && isset($producto->precio[ProductosPrecios::$PRECIO_CONTADO_ID]['precio'])) { ?>
                     <p class="legend_price_contado">
-                        <?php
-                        echo CHtml::image(Yii::app()->theme->baseUrl . '/images/compralo.png');
-                        ?>
-                        <span class="quickDetailContado">$<strong><?php echo Commons::formatPrice($producto->precio[ProductosPrecios::PRECIO_CONTADO_ID]['precio']) ?></strong></span>
+                        <?= CHtml::image(Yii::app()->theme->baseUrl . '/images/compralo.png'); ?>
+                        <span class="quickDetailContado">$<strong><?= Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_CONTADO_ID]['precio']) ?></strong></span>
                     </p>
                     <div class="line-divider"></div>
                     <div class="clearfix"><br /></div>
                 <?php } ?>
+                <?php/* if (ProductosPrecios::$PRECIO_TRANSFERENCIA_ID != Precios::NINGUNO && isset($producto->precio[ProductosPrecios::$PRECIO_TRANSFERENCIA_ID]['precio'])) { ?>
+                    <h6>Precio transferencia bancaria directa</h6>
+                    <span>$<strong><?= Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_TRANSFERENCIA_ID]['precio']) ?></strong></span>
+                    <div class="line-divider"></div>
+                    <div class="clearfix"><br /></div>
+                <?php } */?>
                 <?php if ($hide_ver_mas !== true) { ?>
                     <a
-                        href="<?php echo Yii::app()->createAbsoluteUrl('/productos/detail/'.$categoria_id.'/'.$producto_id) ?>"
+                        href="<?= Yii::app()->createAbsoluteUrl('/productos/detail/'.$categoria_id.'/'.$producto_id) ?>"
                         class="btn btn-mega btn-mega-alt btn-md">Ver más</a>
                     <div class="clearfix"><br /></div>
-                <?php } ?>
-                <div class="panel-group accordion-simple" id="product-accordion">
-                    <div class="panel">
-                        <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-description" class="collapsed"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Descripción </a> </div>
-                        <div id="product-description" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <p><?php echo $producto->descripcion ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-heading"> <a data-toggle="collapse" data-parent="#product-accordion" href="#product-ficha"> <span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Características </a> </div>
-                        <div id="product-ficha" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <table class="table table-striped">
-                                    <?php
-                                    foreach ($producto->campos as $campo) {
-                                        if ($producto['field_' . $campo['slug']] == '') {
-                                            continue;
-                                        }
-                                        ?>
-                                        <tr>
-                                            <td><strong><?php echo $campo['nombre'] ?></strong></td>
-                                            <td><?php echo $producto['field_' . $campo['slug']] ?></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php }
+                  //otro codigo que espero temporal, armamos el html del body de la tabla
+                  $HTMLCaracteristicas = '';
+                  foreach ($producto->campos as $campo) {
+                      if ($producto['field_' . $campo['slug']] == '') {
+                          continue;
+                      }
+                      $HTMLCaracteristicas .= '
+                      <tr><td><strong>'.$campo['nombre'].'</strong></td>
+                          <td>'.$producto['field_' . $campo['slug']].'</td></tr>';
+                  }
+
+                  $this->widget('BootstrapPanelGroup',[
+                    'gral'   => ['class' => 'accordion-simple', 'id' => 'product-accordion', 'panels' => ['class'=>'']],
+                    'panels' => [
+                      [
+                        'title'   => ['text' => '<span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Descripción',],
+                        'content' => '<p>'.$producto->descripcion.'</p>',
+                        'id'      => 'product-description',
+                      ],
+                      [
+                        'title'   => ['text' => '<span class="arrow-down icon-arrow-down-4"></span> <span class="arrow-up icon-arrow-up-4"></span> Características ',],
+                        'content' => $this->widget('HTMLTable',[
+                          'columns' => [],
+                          'table'   => ['class' => 'table table-striped'],
+                          'body'    => $HTMLCaracteristicas,
+                        ],true),
+                        'id'      => 'product-ficha',
+                      ],
+                    ],
+                  ]);
+                ?>
+
                 <div class="clearfix"></div>
                 <div class="line-divider"></div>
-                <?php
+                <?php/*
                 $this->widget('ext.SocialShareButton.SocialShareButton', array(
                     'style'=>'horizontal',
                     'networks' => array('facebook','twitter','pinterest'),
@@ -190,6 +197,7 @@
                 ));
                 ?>
                 <div class="clearfix"><br /><br /><br /></div>
+                */?>
             </div>
         </div>
 <?php if ($fancy === true) { ?>

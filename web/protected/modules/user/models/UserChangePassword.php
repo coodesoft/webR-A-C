@@ -10,16 +10,30 @@ class UserChangePassword extends CFormModel {
 	public $verifyPassword;
 
 	public function rules() {
-		return Yii::app()->controller->id == 'recovery' ? array(
-			array('password, verifyPassword', 'required'),
-			array('password, verifyPassword', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
-			array('verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Las contraseñas no coinciden.")),
-		) : array(
-			array('oldPassword, password, verifyPassword', 'required'),
-			array('oldPassword, password, verifyPassword', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
-			array('verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Las contraseñas no coinciden.")),
-			array('oldPassword', 'verifyOldPassword'),
-		);
+		if (Yii::app()->controller->id == 'recovery'){
+			return [
+								['password, verifyPassword', 'required'],
+								['password, verifyPassword', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")],
+								['verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Las contraseñas no coinciden.")],
+						 ];
+		}
+
+		if (Yii::app()->controller->id == 'profile'){
+			return [
+								['password, verifyPassword', 'required'],
+								['password, verifyPassword', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")],
+								['verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Las contraseñas no coinciden.")],
+						 ];
+		}
+
+		//si no se cumplieron las condiciones anteriores estas son las reglas por defecto
+		return [
+			['oldPassword, password, verifyPassword', 'required'],
+			['oldPassword, password, verifyPassword', 'length', 'max'=>128, 'min' => 4,'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")],
+			['verifyPassword', 'compare', 'compareAttribute'=>'password', 'message' => UserModule::t("Las contraseñas no coinciden.")],
+			['oldPassword', 'verifyOldPassword'],
+		];
+
 	}
 
 	/**
@@ -27,11 +41,11 @@ class UserChangePassword extends CFormModel {
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'oldPassword'=>UserModule::t("Old Password"),
-			'password'=>UserModule::t("password"),
-			'verifyPassword'=>UserModule::t("Retype Password"),
-		);
+		return [
+			'oldPassword'    => UserModule::t("Old Password"),
+			'password'       => UserModule::t("password"),
+			'verifyPassword' => UserModule::t("Retype Password"),
+		];
 	}
 
 	/**

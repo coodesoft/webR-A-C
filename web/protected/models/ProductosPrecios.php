@@ -15,16 +15,18 @@ class ProductosPrecios extends CActiveRecord
 {
     public $descuento;
     public $producto;
-    public $precio_online;
-    public $precio_tarjeta;
-    public $precio_contado;
 
-    const PRECIO_ONLINE_ID = 15;
-    const PRECIO_TARJETA_ID = 12;
-    const PRECIO_CONTADO_ID = 13;
-    const PRECIO_AUX_ID = 99;
-    const PRECIO_AUX_CUOTAS_SOBRE_PRECIO = 999;
-    const PRECIO_AHORRO_ID = 777;
+    public static $PRECIO_AUX_ID = 99;
+    public static $PRECIO_AUX_CUOTAS_SOBRE_PRECIO = 999;
+    public static $PRECIO_AHORRO_ID = 777;
+
+    public static $PRECIO_ONLINE_ID;
+    public static $PRECIO_TARJETA_ID;
+    public static $PRECIO_CONTADO_ID;
+    public static $PRECIO_TODOPAGO_ID;
+    public static $PRECIO_LISTA_ID;
+    public static $OFERTA_PRECIO_MAYOR_ID;
+    public static $OFERTA_PRECIO_MENOR_ID;
 
     /**
      * Returns the static model of the specified AR class.
@@ -144,7 +146,7 @@ class ProductosPrecios extends CActiveRecord
      */
     public static function getPorcentajeOnline()
     {
-        $precio = Precios::model()->findByPk(ProductosPrecios::PRECIO_ONLINE_ID);
+        $precio = Precios::model()->findByPk(ProductosPrecios::$PRECIO_ONLINE_ID);
         return (double) $precio->porcentaje;
     }
 
@@ -158,33 +160,34 @@ class ProductosPrecios extends CActiveRecord
      */
     public static function getOfertas($categoria_id = null, $producto_id = null, $arrPromociones = null)
     {
-        $porcentaje_online = self::getPorcentajeOnline();
-        $dif = round(1 - ($porcentaje_online / 100), 2);
+        //$porcentaje_online = self::getPorcentajeOnline();
+
+        //$dif = round(1 - ($porcentaje_online / 100), 2);
 
         $andProducto = "";
         if ($categoria_id !== null && $producto_id !== null) {
             $andProducto = " AND categoria_id = " . $categoria_id . " AND producto_id = " . $producto_id;
         }
-
+        //excluye a todos los productos que no estan en oferta
         if (count($arrPromociones)) {
             $notIn = " AND (";
-            $notInArr = array();
+            $notInArr = [];
             foreach ($arrPromociones as $arr) {
                 $notInArr[] = "(categoria_id != " . $arr['categoria_id'] . " AND producto_id != " . $arr['producto_id'] . ")";
             }
             $notIn .= implode(" OR ", $notInArr) . ")";
         }
 
-        $sql = "SELECT 
-                    cast((100 - (t1.po * 100 / t1.pt)) as DECIMAL) as descuento, 
-                    t1.categoria_id, 
-                    t1.producto_id, 
-                    t1.po as precio_online, 
-                    t1.pt as precio_tarjeta
+        $sql = "SELECT
+                    cast((100 - (t1.po * 100 / t1.pt)) as DECIMAL) as descuento,
+                    t1.categoria_id,
+                    t1.producto_id,
+                    t1.po as precio_1,
+                    t1.pt as precio_2
                 FROM
                     (
                     SELECT SUBSTRING_INDEX(t.r, ',',1) as pt, SUBSTRING_INDEX(t.r, ',',-1) as po, t.categoria_id, t.producto_id
-                    FROM 
+                    FROM
                         (
                         SELECT
                             p.categoria_id,
@@ -193,14 +196,14 @@ class ProductosPrecios extends CActiveRecord
                         FROM
                             productos_precios p
                         WHERE
-                            p.precio_id IN (".self::PRECIO_TARJETA_ID.", ".self::PRECIO_ONLINE_ID.")
+                            p.precio_id IN (".self::$OFERTA_PRECIO_MAYOR_ID.", ".self::$OFERTA_PRECIO_MENOR_ID.",".self::$PRECIO_LISTA_ID.")
                             " . $andProducto . "
                             " . $notIn . "
                         GROUP BY 1, 2
                         ORDER BY 1, 2, 3
                         ) as t
                     ) as t1
-                WHERE cast((100 - (t1.po * 100 / t1.pt)) as DECIMAL) > $porcentaje_online
+                WHERE cast((100 - (t1.po * 100 / t1.pt)) as DECIMAL) > ".ConfiguracionesWeb::$Config->diferencia_porcen_is_oferta."
                 ORDER BY RAND() DESC
                 LIMIT 6";
 
@@ -213,17 +216,19 @@ class ProductosPrecios extends CActiveRecord
                 // ademas si lo hago caigo en un bucle infinito
                 if ($categoria_id === null && $producto_id === null) {
                     $producto = Productos::getProductInfo($p->categoria_id, $p->producto_id);
+                    //die($sql);
                     if ($producto === null) {
                         unset($pp[$key]);
                         continue;
                     }
                     $p->producto = $producto;
                 }
-                $p->producto->precio[self::PRECIO_TARJETA_ID] = $p->precio_tarjeta;
-                $p->producto->precio[self::PRECIO_AUX_ID] = $p->precio_tarjeta * $dif; // precio con el 10 de desc para tacharlo
-                $p->producto->precio[self::PRECIO_ONLINE_ID] = $p->precio_online;
-                $p->producto->precio[self::PRECIO_CONTADO_ID] = $p->precio_contado;
-                $p->producto->precio[self::PRECIO_AHORRO_ID] = $p->precio_tarjeta - $p->precio_online;
+                //obtenemos los precios sobre los productos
+                if ($p->producto !== null){
+                  $p->producto->precio[self::$PRECIO_AHORRO_ID]['precio'] = $p->producto->precio[self::$OFERTA_PRECIO_MAYOR_ID]['precio'] - $p->producto->precio[self::$OFERTA_PRECIO_MENOR_ID]['precio'];
+                  $p->producto->precio[self::$PRECIO_AUX_ID]['precio']    = $p->producto->precio[self::$OFERTA_PRECIO_MAYOR_ID]['precio'];
+                }
+
                 $offerCount++;
                 if ($offerCount == 6) {
                     return $pp;

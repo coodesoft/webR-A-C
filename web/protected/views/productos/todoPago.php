@@ -13,7 +13,7 @@ $form = [];
 foreach ($items as $item) {
     if ($item->producto) {
         $form['descripciones'][] = TextHelper::character_limiter(str_replace('#', '', $item->producto['descripcion']), 50) ?: 'Descripción del producto no disponible.';
-        $form['unitarios'][] = $item->producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'];
+        $form['unitarios'][] = $item->producto->precio[ProductosPrecios::$PRECIO_ONLINE_ID]['precio'];
         $form['cantidades'][] = $item->cantidad;
         $form['etiquetas'][] = $item->producto->etiqueta;
         $form['ids'][] = $item->producto->categoria->categoria_id.'_'.$item->producto->producto_id;

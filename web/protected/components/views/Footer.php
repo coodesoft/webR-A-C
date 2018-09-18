@@ -1,12 +1,8 @@
 <!-- Footer -->
-<section class="services-block hidden-xs noBorders">
+<section id="footer" class="services-block hidden-xs noBorders">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12">
-                <a href="#">
-                    <?php echo CHtml::image(Yii::app()->theme->baseUrl . '/images/footer.png'); ?>
-                </a>
-            </div>
+                    <?php echo CHtml::image(Yii::app()->theme->baseUrl . '/images/footer_alt.jpeg'); ?>
         </div>
     </div>
 </section>

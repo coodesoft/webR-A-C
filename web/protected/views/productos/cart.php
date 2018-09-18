@@ -25,6 +25,18 @@ $this->pageTitle = Yii::app()->name . ' :: ' . 'Carrito de compras';
                 <div class="shopping_cart">
                     <div class="box">
                         <div class="shopping_cart_detail">
+                        <?php 
+                            if ($no_stock_items) { ?>
+                                <h4 class="text-danger">El/Los siguiente/s producto/s no se encuentran en stock. Por favor retirelo/s del carrito o cambielo/s por otros.</h4>
+                                <ul> <?php
+                                foreach ($no_stock_items as $no_stock_item) { ?>
+                                    <li class="text-danger"><?= $no_stock_item->etiqueta ?> </li>
+                        <?php
+                            } ?>
+                             </ul>
+                        <?php
+                        } 
+                        ?>
                             <h3>Carrito de compras</h3>
                             <table>
                                 <thead>
@@ -68,7 +80,7 @@ $this->pageTitle = Yii::app()->name . ' :: ' . 'Carrito de compras';
                                                 <span class="td-name visible-xs">Producto</span><a
                                                     href="#"><?php echo $item->producto->etiqueta ?></a></td>
                                             <td><span
-                                                    class="td-name visible-xs">Unitario</span>$<span class="cart-item-unitario"><?php echo Commons::formatPrice($item->producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio']) ?></span>
+                                                    class="td-name visible-xs">Unitario</span>$<span class="cart-item-unitario"><?php echo Commons::formatPrice($item->precio_unitario) ?></span>
                                             </td>
                                             <td><span class="td-name visible-xs">Cantidad</span>
                                                 <div class="input-group quantity-control cart-quantity-control">
@@ -80,7 +92,7 @@ $this->pageTitle = Yii::app()->name . ' :: ' . 'Carrito de compras';
                                                            data-cantidad="<?php echo $item->cantidad ?>"
                                                            data-categoria="<?php echo $item->producto->categoria->categoria_id ?>"
                                                            data-producto="<?php echo $item->producto->producto_id ?>" />
-                                                    <input type="hidden" class="cart-item-unitario-h" value="<?php echo $item->producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'] ?>" />
+                                                    <input type="hidden" class="cart-item-unitario-h" value="<?php echo $item->precio_unitario; ?>" />
                                                 <span
                                                     class="input-group-addon cart-add-one"
                                                     data-categoria="<?php echo $item->producto->categoria->categoria_id ?>"
@@ -88,33 +100,33 @@ $this->pageTitle = Yii::app()->name . ' :: ' . 'Carrito de compras';
                                             </td>
                                             <td>
                                                 <span class="td-name visible-xs">Total</span>
-                                                $<span class="cart-item-total"><?php echo Commons::formatPrice($item->producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'] * $item->cantidad) ?></span>
+                                                $<span class="cart-item-total"><?php echo Commons::formatPrice(Commons::formatPrice($item->precio_unitario,0,'') * $item->cantidad) ?></span>
                                             </td>
                                         </tr>
                                         <?php
-                                        $total += $item->producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'] * $item->cantidad;
+                                        $total += Commons::formatPrice($item->precio_unitario,0,'') * $item->cantidad;
                                     }
                                 }
                                 ?>
                                 </tbody>
                             </table>
-                            <div class="pull-left"> <b class="title">Costo de envío:</b> Gratis </div>
+                            <? 
+                             //se agrega informacion de costo de envio y de total
+                            /*if ($costoEnvio == 0)
+                              $envio = 'Gratis';
+                            else {
+                              $total += $costoEnvio;
+                              $envio  = '$'.Commons::formatPrice($costoEnvio);
+                            }
+                            echo '<div class="pull-left"> <b class="title">Costo de envío:</b> <span id="costo_envio_text">'.$envio .'</span>
+                            <input id="costo_envio" type="hidden" name="costo_envio" value="'.$costoEnvio.'" /> </div>';
+                            */?>
                             <div class="pull-right">
                                 <p><b class="title">Total:</b> <span class="price">$<span class="cartTotal"><?php echo Commons::formatPrice($total) ?></span></span></p>
                                 <a href="<?php echo Yii::app()->createAbsoluteUrl('/productos/checkout') ?>" class="btn btn-mega">FINALIZAR COMPRA</a>
                             </div>
                         </div>
-                        <div class="shopping_cart_empty hidden">
-                            <div class="col-sm-9 col-md-9 col-lg-9">
-                                <div class="icon-circle-sm active"><span class="icon icon-cart"></span></div>
-                                <h5>No tienes items en el carrito</h5>
-                                <p>Empieza a disfrutar de nuestras promociones ahora mismo.</p>
-                            </div>
-                            <div class="col-lg-3">
-                                <a class="btn btn-mega btn-lg" href="<?php echo Yii::app()->createAbsoluteUrl('/') ?>">IR A HOME</a>
-                            </div>
-                            <h4 class="text-center"></h4>
-                        </div>
+                        <?php $this->widget('EmptyShopCart',['class' => 'shopping_cart_empty hidden']); ?>
                         <div class="clearfix"></div>
                     </div>
                 </div>

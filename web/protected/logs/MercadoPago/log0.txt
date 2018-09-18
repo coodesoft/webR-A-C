@@ -1,0 +1,193 @@
+
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:02
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718279246"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:17
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718279246"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:19
+
+Recibido verbo GET: {"type":"payment","data_id":"3671395267"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:35:19
+
+Recibido verbo GET: {"topic":"payment","id":"3671395267"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:56:21
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718300583"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:57:17
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718300583"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 14:57:20
+
+Recibido verbo GET: {"topic":"payment","id":"3671414033"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 15:08:30
+
+Recibido verbo GET: {"type":"payment","data_id":"3671414033"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 16:10:06
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718339516"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 16:11:37
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718360493"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:03:25
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718404444"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:04:44
+
+Recibido verbo GET: {"topic":"merchant_order","id":"718404444"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:04:47
+
+Recibido verbo GET: {"topic":"payment","id":"3671591042"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-04-27 17:04:47
+
+Recibido verbo GET: {"type":"payment","data_id":"3671591042"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:01:00
+
+Recibido verbo GET: {"topic":"merchant_order","id":"722970543"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:08
+
+Recibido verbo GET: {"topic":"merchant_order","id":"722962560"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:10
+
+Recibido verbo GET: {"topic":"merchant_order","id":"722962560"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:12
+
+Recibido verbo GET: {"topic":"payment","id":"3692658941"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+ 
+############################
+ Fecha y Hora: 2018-05-04 14:02:12
+
+Recibido verbo GET: {"type":"payment","data_id":"3692658941"}
+Recibido verbo POST: []
+1
+ 
+############################
+ Fecha y Hora: 2018-05-06 21:18:31
+
+Recibido verbo GET: {"topic":"merchant_order","id":"724368525"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:17:56
+
+Recibido verbo GET: {"topic":"merchant_order","id":"725881196"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:17
+
+Recibido verbo GET: {"topic":"merchant_order","id":"725881196"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:19
+
+Recibido verbo GET: {"type":"payment","data_id":"3705379778"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:19:19
+
+Recibido verbo GET: {"topic":"payment","id":"3705379778"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+1
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:26
+
+Recibido verbo GET: {"topic":"payment","id":"3705379778"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:26
+
+Recibido verbo GET: {"type":"payment","data_id":"3705379778"}
+Recibido verbo POST: []
+ 
+############################
+ Fecha y Hora: 2018-05-08 16:36:26
+
+Recibido verbo GET: {"topic":"merchant_order","id":"725881196"}
+Recibido verbo POST: []
+Entro en TOPIC 
+Hice new de IPNData
+1
+1

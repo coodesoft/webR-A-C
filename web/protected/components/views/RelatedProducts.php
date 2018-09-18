@@ -12,7 +12,7 @@ if (count($productos)) {
                     <li>
                         <div class="product">
                             <a
-                                href="<?php echo Yii::app()->createAbsoluteUrl('/productos/detail/' . $categoria_id . '/' . $producto->producto_id) ?>"
+                                href="<?php echo Yii::app()->createAbsoluteUrl('/productos/detail/' . $producto->categoria->categoria_id . '/' . $producto->producto_id) ?>"
                                 class="preview-image">
                                 <img
                                     class="img-responsive product_activ"
@@ -21,12 +21,12 @@ if (count($productos)) {
                             </a>
                             <p class="name">
                                 <a
-                                    href="<?php echo Yii::app()->createAbsoluteUrl('/productos/detail/' . $categoria_id . '/' . $producto->producto_id) ?>"
+                                    href="<?php echo Yii::app()->createAbsoluteUrl('/productos/detail/' .  $producto->categoria->categoria_id . '/' . $producto->producto_id) ?>"
                                     class="preview-image"><?php echo $producto->etiqueta ?>
                                 </a>
                             </p>
                             <span
-                                class="price new">$<?php echo Commons::formatPrice($producto->precio[15]['precio']) ?></span>
+                                class="price new">$<?php echo Commons::formatPrice($producto->precio[ProductosPrecios::$PRECIO_RELACIONADO_ID]['precio']) ?></span>
                         </div>
                     </li>
                     <?php

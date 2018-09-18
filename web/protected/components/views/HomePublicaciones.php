@@ -1,7 +1,7 @@
 <?php
 if (count($publicaciones)) {
     ?>
-    <section class="mTop2">
+    <section>
         <h3>Últimas noticias</h3>
         <!-- Products list -->
         <div class="">

@@ -60,7 +60,7 @@ class SiteController extends Controller
 		}
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('clientes',array('model'=>$model));
+		$this->render('clientes',['model'=>$model]);
 	}
 
 	/**
@@ -82,59 +82,48 @@ class SiteController extends Controller
 	 */
 	public function actionContacto()
 	{
+
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
 			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
 			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-Type: text/html; charset=UTF-8";
+		        
+		        EMailer::sendContactMail($model);
 
-				$model->body .= "<br /><br />Nombre y apellido: " . $model->name . "<br />Email: " . $model->email . "<br />Teléfono: " . $model->phone;
-				mail(Yii::app()->params['contactoEmail'],'Contacto desde la web',$model->body,$headers);
 				Yii::app()->user->setFlash('contacto','Gracias por contactarse. Le responderemos a la brevedad.');
 				$this->refresh();
 			}
 		}
-		$this->render('contacto',array('model'=>$model));
+		$this->render('contacto',array('model'=>$model,'producto'=>$producto));
 	}
 
 	/**
-	 * Displays the login page
+	 * Displays the contact page
 	 */
-	public function actionLogin()
+	public function actionContactoProducto($id1, $id2)
 	{
-		$model=new LoginForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
+		if (isset($id1) && isset($id2)) {
+			$producto = Productos::getProductInfo($id1, $id2);
+			if ($producto === null) 
+            	throw new CHttpException(404,'The requested page does not exist.');
 		}
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
+		$model=new ContactForm;
+		if(isset($_POST['ContactForm']))
 		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+			$model->attributes=$_POST['ContactForm'];
+			if($model->validate())
+			{
+
+				EMailer::sendContactFromProductMail($model,$producto);
+
+				Yii::app()->user->setFlash('contacto','Gracias por contactarse. Le responderemos a la brevedad.');
+				$this->refresh();
+			}
 		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('contacto',array('model'=>$model,'producto'=>$producto));
 	}
 
-	/**
-	 * Logs out the current user and redirect to homepage.
-	 */
-	public function actionLogout()
-	{
-		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
-	}
 }

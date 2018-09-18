@@ -42,7 +42,7 @@ class MainMenu extends CWidget {
         }
 
         $cartItems = CarritoProductosWeb::getCartItems();
-
+        
         $this->render('MainMenu', array(
             'nivel0' => $arrNivel0,
             'comparador_enabled' => $opciones->comparador_enabled,

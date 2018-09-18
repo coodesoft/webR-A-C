@@ -13,6 +13,25 @@
 class ConfiguracionesWeb extends CActiveRecord
 {
     const CUOTAS_SOBRE_PRECIO_NO = 'No';
+    public static $Config = [];
+
+    public static function cargar(){
+      //si anteriormente se cargaron las configuraciones no las necesito pedir de nuevo
+      if(count(self::$Config)==0){
+        self::$Config = self::getConfigWeb();
+        //Actualizamos los valores estaticos de los precios de los productos
+        ProductosPrecios::$PRECIO_ONLINE_ID       = self::$Config->lista_precio_online;
+        ProductosPrecios::$PRECIO_TARJETA_ID      = self::$Config->lista_precio_cuotas;
+        ProductosPrecios::$PRECIO_CONTADO_ID      = self::$Config->lista_precio_contado;
+        ProductosPrecios::$PRECIO_LISTA_ID        = self::$Config->lista_precio_lista;
+        ProductosPrecios::$PRECIO_TODOPAGO_ID     = self::$Config->lista_precio_todopago;
+        //obtenemos los identificadores de los tipos de precio definidos
+        $TiposPrecios = self::getTiposPrecios();
+        ProductosPrecios::$OFERTA_PRECIO_MENOR_ID = self::$Config[$TiposPrecios[self::$Config->oferta_tipo_precio_menor]['campo']];
+        ProductosPrecios::$OFERTA_PRECIO_MAYOR_ID = self::$Config[$TiposPrecios[self::$Config->oferta_tipo_precio_mayor]['campo']];
+
+      }
+    }
 
     /**
      * Returns the static model of the specified AR class.
@@ -111,5 +130,17 @@ class ConfiguracionesWeb extends CActiveRecord
     public static function getConfigWeb()
     {
         return ConfiguracionesWeb::model()->findByPk(1);
+    }
+
+    public static function getTiposPrecios(){
+      return [
+        '0' => ['campo' => 'lista_precio_online',        'nombre' => 'Precio Principal'],
+        '1' => ['campo' => 'lista_precio_transferencia', 'nombre' => 'Precio Transferencia'],
+        '2' => ['campo' => 'lista_precio_mercado_pago',  'nombre' => 'Precio Mercado Pago'],
+        '3' => ['campo' => 'lista_precio_contado',       'nombre' => 'Precio Contado'],
+        '4' => ['campo' => 'lista_precio_lista',         'nombre' => 'Precio Tachado'],
+        '5' => ['campo' => 'lista_precio_cuotas',        'nombre' => 'Precio Cuotas'],
+        '6' => ['campo' => 'lista_precio_todopago',      'nombre' => 'Precio Todo Pago'],
+      ];
     }
 }

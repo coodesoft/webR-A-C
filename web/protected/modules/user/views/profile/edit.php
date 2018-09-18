@@ -18,7 +18,8 @@ $this->pageTitle=Yii::app()->name . ' :: '.UserModule::t("Editar perfil");
                 <ul class="nav nav-pills">
                     <li role="presentation" class="active"><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/profile/edit') ?>">Perfil</a></li>
                     <li role="presentation"><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/profile/changepassword') ?>">Cambiar contraseña</a></li>
-                    <li role="presentation"><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/profile/pedidos') ?>">Pedidos</a></li>
+                    <!-- Deshabilitamos acceso listado de pedidos hasta que lo agreguemos -->
+                    <!--li role="presentation"><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/profile/pedidos') ?>">Pedidos</a></li -->
                     <li role="presentation"><a href="<?php echo Yii::app()->createAbsoluteUrl('/direcciones') ?>">Direcciones</a></li>
                 </ul>
             </section>

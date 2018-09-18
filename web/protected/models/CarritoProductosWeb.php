@@ -128,7 +128,7 @@ class CarritoProductosWeb extends CActiveRecord
     public static function getCartItems()
     {
         self::clearItems();
-
+        ConfiguracionesWeb::cargar();
         if (!Yii::app()->user->id) {
             $sql = "SELECT user_id, categoria_id, producto_id, SUM(cantidad) as cantidad
                     FROM carrito_productos_web
@@ -155,7 +155,7 @@ class CarritoProductosWeb extends CActiveRecord
             }
             $cartItem->producto = $producto;
 
-            $precio = $cartItem->producto->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'];
+            $precio = $cartItem->producto->precio[ProductosPrecios::$PRECIO_ONLINE_ID]['precio'];
             $total += ($precio * $cartItem->cantidad);
 
             unset($cartItems[$key]->clave);
@@ -230,7 +230,7 @@ class CarritoProductosWeb extends CActiveRecord
                     FROM carrito_productos_web
                     WHERE user_id = ".$user_id."
                     AND categoria_id = " . $categoria_id . "
-                    AND producto_id = " . $producto_id . " 
+                    AND producto_id = " . $producto_id . "
                     GROUP BY categoria_id, producto_id
                     ORDER BY fecha DESC";
             $cart = self::model()->findBySql($sql);
@@ -239,7 +239,7 @@ class CarritoProductosWeb extends CActiveRecord
                     FROM carrito_productos_web
                     WHERE clave = '".$clave."'
                     AND categoria_id = " . $categoria_id . "
-                    AND producto_id = " . $producto_id . " 
+                    AND producto_id = " . $producto_id . "
                     GROUP BY categoria_id, producto_id
                     ORDER BY fecha DESC";
             $cart = self::model()->findBySql($sql);
@@ -264,7 +264,7 @@ class CarritoProductosWeb extends CActiveRecord
             foreach ($cartItems as $cartItem) {
                 $sqlD = "DELETE FROM carrito_productos_web
                         WHERE categoria_id = " . $cartItem->categoria_id . "
-                        AND producto_id = " . $cartItem->producto_id . " 
+                        AND producto_id = " . $cartItem->producto_id . "
                         AND clave = '".Yii::app()->session['cart_web_clave']."'";
                 Yii::app()->db->createCommand($sqlD)->execute();
             }
@@ -279,7 +279,7 @@ class CarritoProductosWeb extends CActiveRecord
             foreach ($cartItems as $cartItem) {
                 $sqlD = "DELETE FROM carrito_productos_web
                         WHERE categoria_id = " . $cartItem->categoria_id . "
-                        AND producto_id = " . $cartItem->producto_id . " 
+                        AND producto_id = " . $cartItem->producto_id . "
                         AND user_id = ".Yii::app()->user->id;
                 Yii::app()->db->createCommand($sqlD)->execute();
             }

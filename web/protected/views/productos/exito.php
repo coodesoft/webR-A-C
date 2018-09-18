@@ -8,7 +8,6 @@ $this->pageTitle = Yii::app()->name . ' :: ' . 'Venta procesada';
         <span class="divider">›</span> Venta procesada </nav>
 </section>
 <!-- //end Breadcrumbs -->
-
 <section class="content-row">
     <div class="grey-container">
         <div class="container">

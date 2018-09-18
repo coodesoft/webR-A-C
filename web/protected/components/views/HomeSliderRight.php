@@ -1,7 +1,7 @@
 <?php
 if (!$mini) {
     ?>
-    <section class="<?php echo $extraCss ?> container itemsNoPadding" style="height: 200px;">
+    <section class="<?php echo $extraCss ?> homeSliderRight container itemsNoPadding noPadding" style="height: 200px;">
         <!-- Slider cuerpo-->
         <section class="owl-slider-outer slider-listing hidden-xs" style="margin-bottom: 50px !important;">
             <div class="owl-slider">
@@ -28,7 +28,7 @@ if (!$mini) {
     ?>
     <div class="<?php echo $extraCss ?> mini-banner-slides">
         <!-- Slider cuerpo-->
-        <section class="owl-slider-outer slider-listing hidden-xs" style="margin-bottom: 50px !important;">
+        <section class="owl-slider-outer slider-listing hidden-xs" style="margin-bottom: 10px !important;">
             <div class="owl-slider">
                 <?php
                 foreach ($slides as $slide) {

@@ -2,27 +2,27 @@
 class RightColumn extends CWidget {
 
     public function run() {
-
         $novedades = ProductosNovedades::model()->findAll();
-
+        $aux = [];
 		$prods = 0;
-        foreach ($novedades as $key => &$novedad) {
+        foreach ($novedades as $key => $novedad) {
             $producto = Productos::getProductInfo($novedad->categoria_id, $novedad->producto_id);
-			if ($producto === null) {
-                unset($novedades[$key]);
+		    if ($producto === null) {
                 continue;
             }
-			$prods++;
             $novedad->producto = $producto;
-			if ($prods == 15) {
-				break;
-			}
+            $aux [] = $novedad;
+			$prods++;
+
+    	    if ($prods == 15) {
+    		  break;
+    	   }
         }
 
         $this->render('RightColumn',
-            array(
-                'novedades' => $novedades
-            )
+            [
+                'novedades' => $aux,
+            ]
         );
     }
 

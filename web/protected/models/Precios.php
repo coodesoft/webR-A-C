@@ -19,6 +19,7 @@
  */
 class Precios extends CActiveRecord
 {
+	const NINGUNO = -1;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -68,7 +69,7 @@ class Precios extends CActiveRecord
 			'padre' => array(self::BELONGS_TO, 'Precios', 'porcentaje_precio_id'),
 		);
 	}
-    
+
     /**
      * Función para formatear las fechas.
      * Todo lo que sea de tipo date y datetime serán formateados para ser legibles y antes de ser validados para almacanarse
@@ -80,7 +81,7 @@ class Precios extends CActiveRecord
             ),
         );
     }
-    
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -127,7 +128,7 @@ class Precios extends CActiveRecord
 		$criteria->compare('orden',$this->orden,true);
 
 		return new CActiveDataProvider($this, array(
-			'pagination' => array(  
+			'pagination' => array(
                 'pageSize'=>Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']),
             ),
             'criteria'=>$criteria,
@@ -136,23 +137,23 @@ class Precios extends CActiveRecord
 
 	/**
      * Recupero una lista de precios para un dropDownList
-     * 
+     *
      * en $excluded defino las IDs de precios que no quiero que salgan el el resultado.
-     * 
+     *
      * @return elemento listData con los precios.
-     * 
+     *
      * */
     public static function listPrecios($excluded=null)
-    {    
+    {
         $criteria = new CDbCriteria();
         if(isset($excluded) && count($excluded)>0)
             $criteria->addNotInCondition("precio_id", $excluded);
-        
+
 		$criteria->order = "orden ASC, codigo ASC, nombre ASC";
 
         return CHtml::listData(Precios::model()->findAll($criteria),'precio_id','codigoYNombre');
     }
-    
+
     /**
      * @Devuelve la el codigo de la categoria y el nombre todo en uno.
      * */

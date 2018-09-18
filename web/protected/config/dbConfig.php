@@ -1,10 +1,10 @@
 <?php
 function getDBparams(){
   return [
-      'connectionString' => 'mysql:host=localhost;dbname=rac_201710616',
-      'emulatePrepare' => true,
-      'username' => 'root',
-      'password' => 'LuchO',
-      'charset' => 'utf8'
+      'connectionString' => 'mysql:host=localhost;dbname=c0150173_rac15_5_17',
+            'emulatePrepare' => true,
+            'username' => 'c0150173_rac',
+            'password' => 'nurTqDQd5F6BpGhS',
+            'charset' => 'utf8',
   ];
 }

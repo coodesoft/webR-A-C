@@ -26,18 +26,18 @@ class Productos extends CActiveRecord
     public $multimedia;
     public $stock;
 
-    const LABEL_ORDER_PRICE_LOW = 'Precio más bajo';
-    const VALUE_ORDER_PRICE_LOW = 'priceLow';
-    const LABEL_ORDER_PRICE_HIGH = 'Precio más alto';
-    const VALUE_ORDER_PRICE_HIGH = 'priceHigh';
-    const LABEL_ORDER_NAME_ASC = 'A - Z';
-    const VALUE_ORDER_NAME_ASC = 'nameAsc';
-    const LABEL_ORDER_NAME_DESC = 'Z - A';
-    const VALUE_ORDER_NAME_DESC = 'nameDesc';
+    const LABEL_ORDER_PRICE_LOW    = 'Precio más bajo';
+    const VALUE_ORDER_PRICE_LOW    = 'priceLow';
+    const LABEL_ORDER_PRICE_HIGH   = 'Precio más alto';
+    const VALUE_ORDER_PRICE_HIGH   = 'priceHigh';
+    const LABEL_ORDER_NAME_ASC     = 'A - Z';
+    const VALUE_ORDER_NAME_ASC     = 'nameAsc';
+    const LABEL_ORDER_NAME_DESC    = 'Z - A';
+    const VALUE_ORDER_NAME_DESC    = 'nameDesc';
     const LABEL_ORDER_LAST_CREATED = 'Últimos productos';
     const VALUE_ORDER_LAST_CREATED = 'lastProds';
-    const LABEL_ORDER_AHORRO_DESC = 'Mayor ahorro';
-    const VALUE_ORDER_AHORRO_DESC = 'savings';
+    const LABEL_ORDER_AHORRO_DESC  = 'Mayor ahorro';
+    const VALUE_ORDER_AHORRO_DESC  = 'savings';
 
     public function __construct($table_name = '') {
 
@@ -74,14 +74,14 @@ class Productos extends CActiveRecord
     {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
-        return array(
-            array('nombre, descripcion, numeracion, foto', 'required'),
-            array('activo', 'numerical', 'integerOnly'=>true),
-            array('nombre, foto', 'length', 'max'=>255),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('producto_id, nombre, descripcion, numeracion, foto, activo', 'safe', 'on'=>'search'),
-        );
+        return [
+          ['nombre, descripcion, numeracion, foto', 'required'],
+          ['activo', 'numerical', 'integerOnly'=>true],
+          ['nombre, foto', 'length', 'max'=>255],
+          // The following rule is used by search().
+          // @todo Please remove those attributes that should not be searched.
+          ['producto_id, nombre, descripcion, numeracion, foto, activo', 'safe', 'on'=>'search'],
+        ];
     }
 
     /**
@@ -91,9 +91,9 @@ class Productos extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
+        return [
             'fotos' => array(self::HAS_MANY, 'ProductosFotos', 'producto_id'),
-        );
+        ];
     }
 
     /**
@@ -101,28 +101,16 @@ class Productos extends CActiveRecord
      */
     public function attributeLabels()
     {
-        return array(
-            'producto_id' => 'Producto',
-            'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
-            'numeracion' => 'Numeracion',
-            'foto' => 'Foto',
-            'activo' => 'Activo',
-        );
+      return [
+        'producto_id' => 'Producto',
+        'nombre'      => 'Nombre',
+        'descripcion' => 'Descripcion',
+        'numeracion'  => 'Numeracion',
+        'foto'        => 'Foto',
+        'activo'      => 'Activo',
+      ];
     }
 
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
     public function search()
     {
         // @todo Please modify the following code to remove attributes that should not be searched.
@@ -143,12 +131,14 @@ class Productos extends CActiveRecord
 
     public static function getProductInfo($categoria_id, $producto_id)
     {
+        ConfiguracionesWeb::cargar();
+
         $categoria = Categorias::model()->findByPk($categoria_id);
 
         $modelProd = new Productos($categoria->slug);
         if ($producto_id != "") {
-            $sqlProd = "SELECT * 
-                        FROM productos_".$categoria->slug." 
+            $sqlProd = "SELECT *
+                        FROM productos_".$categoria->slug."
                         WHERE producto_id = " . $producto_id . "
                         AND borrado_logico = 0
                         AND activo_web = 1";
@@ -173,11 +163,11 @@ class Productos extends CActiveRecord
             $modelProd->precio[$precio->precio_id] = $precio->attributes;
         }
 
-        $configWeb = ConfiguracionesWeb::getConfigWeb();
+        $configWeb = ConfiguracionesWeb::$Config;
         if ($configWeb->cuotas_sobre_precio !== ConfiguracionesWeb::CUOTAS_SOBRE_PRECIO_NO) {
-            $modelProd->precio[ProductosPrecios::PRECIO_AUX_CUOTAS_SOBRE_PRECIO] = new stdClass();
-            $modelProd->precio[ProductosPrecios::PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio
-                = $modelProd->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'] / $configWeb->cuotas_sobre_precio;
+            $modelProd->precio[ProductosPrecios::$PRECIO_AUX_CUOTAS_SOBRE_PRECIO] = new stdClass();
+            $modelProd->precio[ProductosPrecios::$PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio
+                = $modelProd->precio[ProductosPrecios::$PRECIO_TARJETA_ID]['precio'] / $configWeb->cuotas_sobre_precio;
             $modelProd->cuotas_sobre_precio = (int) $configWeb->cuotas_sobre_precio;
         }
 
@@ -199,29 +189,27 @@ class Productos extends CActiveRecord
         if ($promocion !== false) {
             $modelProd->promocion = $promocion;
             $modelProd->isOferta = true;
-            $porcentaje_online = ProductosPrecios::getPorcentajeOnline();
-            $dif = round(1 - ($porcentaje_online / 100), 2);
 
-            $aux = $modelProd->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'];
-            $modelProd->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'] =
-                ((float) $modelProd->precio[ProductosPrecios::PRECIO_TARJETA_ID]['precio'] * (100 - (float) $promocion->porcentaje_promocion)) / 100;
-            $modelProd->precio[ProductosPrecios::PRECIO_AHORRO_ID]['precio'] = $modelProd->precio[ProductosPrecios::PRECIO_TARJETA_ID]['precio'] - $modelProd->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio'];
-            $modelProd->precio[ProductosPrecios::PRECIO_AUX_ID]['precio'] = $aux;
+            $modelProd->precio[ProductosPrecios::$PRECIO_ONLINE_ID]['precio']  = ((float) $modelProd->precio[ProductosPrecios::$PRECIO_ONLINE_ID]['precio'] * (100 - (float) $promocion->porcentaje_promocion)) / 100;
+            $modelProd->precio[ProductosPrecios::$PRECIO_CONTADO_ID]['precio'] = ((float) $modelProd->precio[ProductosPrecios::$PRECIO_CONTADO_ID]['precio'] * (100 - (float) $promocion->porcentaje_promocion)) / 100;
         }
 
+        $modelProd->precio[ProductosPrecios::$PRECIO_AHORRO_ID]['precio'] = $modelProd->precio[ProductosPrecios::$OFERTA_PRECIO_MAYOR_ID]['precio'] - $modelProd->precio[ProductosPrecios::$OFERTA_PRECIO_MENOR_ID]['precio'];
+        $modelProd->precio[ProductosPrecios::$PRECIO_AUX_ID]['precio']    = $modelProd->precio[ProductosPrecios::$OFERTA_PRECIO_MAYOR_ID]['precio'];
+        
         return $modelProd;
     }
 
     public static function isNovedad($categoria_id, $producto_id)
     {
-        $novedad = ProductosNovedades::model()->findByAttributes(
-            array(
-                'categoria_id' => $categoria_id,
-                'producto_id' => $producto_id,
-            )
-        );
+      $novedad = ProductosNovedades::model()->findByAttributes(
+          [
+            'categoria_id' => $categoria_id,
+            'producto_id' => $producto_id,
+          ]
+      );
 
-        return $novedad !== null;
+      return $novedad !== null;
     }
 
     /**
@@ -259,6 +247,7 @@ class Productos extends CActiveRecord
      */
     public static function getProductosByCategoria($categoria_id, $limit = null, $keyword = null, $producto_id = null)
     {
+        ConfiguracionesWeb::cargar();
         $categoria = Categorias::model()->findByPk($categoria_id);
 
         $sqlLimit = '';
@@ -276,8 +265,8 @@ class Productos extends CActiveRecord
         }
 
         $productos = new Productos($categoria->slug);
-        $sql = "SELECT * 
-                FROM productos_" . $categoria->slug . " 
+        $sql = "SELECT *
+                FROM productos_" . $categoria->slug . "
                 WHERE borrado_logico = 0 AND activo_web = 1"
                 . $sqlWhere
                 . $sqlWhere2
@@ -299,7 +288,7 @@ class Productos extends CActiveRecord
     public static function getDestacados($limit = 15)
     {
         $destacados = ProductosDestacados::model()->findAll();
-    
+
         $prods = 0;
         foreach ($destacados as $key => &$destacado) {
             $producto = Productos::getProductInfo($destacado->categoria_id, $destacado->producto_id);

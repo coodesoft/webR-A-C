@@ -1,6 +1,6 @@
 <!-- Slider -->
 <section class="main-slider container">
-    <div class="owl-slider-outer">
+    <div class="owl-slider-outer row">
         <div class="owl-slider">
             <?php
             foreach ($slides as $slide) {

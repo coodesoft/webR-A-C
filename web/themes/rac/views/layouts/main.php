@@ -3,9 +3,7 @@
 <head>
     <?php
     $cs=Yii::app()->clientScript;
-    $cs->scriptMap=array(
-     'jquery.js'=>false,
-    );
+    $cs->scriptMap=['jquery.js'=>false,];
     ?>
     <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-1.10.2.min.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -17,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <?= SocialConnectModule::getMetaTags('google'); ?>
     <link rel="icon" href="<?php echo Yii::app()->theme->baseUrl . '/images/racIconMenu.png' ?>" type="image/x-icon" />
     <!-- CSS preloader -->
     <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/loader.css" rel="stylesheet">
@@ -89,5 +88,14 @@
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/Cart.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/Profile.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/Checkout.js"></script>
+
+<script src='https://apis.google.com/js/platform.js?onload=googleOnLoad' async defer></script>
+
+<script src='https://connect.facebook.net/en_US/sdk.js' async defer></script>
+
+<?php
+  echo SocialConnectModule::getJavaScript('facebook');
+  echo SocialConnectModule::getJavaScript('google');
+ ?>
 </body>
 </html>

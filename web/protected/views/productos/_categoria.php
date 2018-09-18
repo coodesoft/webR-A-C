@@ -5,7 +5,7 @@
  * Date: 05/07/16
  * Time: 23:56
  */
-//echo "<pre>"; var_dump($data->precio[ProductosPrecios::PRECIO_AHORRO_ID]); die;
+//echo "<pre>"; var_dump($data->precio[ProductosPrecios::$PRECIO_AHORRO_ID]); die;
 $linkToDetail = Yii::app()->createAbsoluteUrl('/productos/detail/' . $data->categoria->categoria_id . '/' . $data->producto_id);
 $linkToQuickView = Yii::app()->createAbsoluteUrl('/productos/quickview/' . $data->categoria->categoria_id . '/' . $data->producto_id);
 ?>
@@ -30,11 +30,11 @@ $linkToQuickView = Yii::app()->createAbsoluteUrl('/productos/quickview/' . $data
                 <?php
                 if ($data->promocion !== null) {
                     ?>
-                    <li><span class="label">$<?php echo Commons::formatPrice($data->precio[ProductosPrecios::PRECIO_AHORRO_ID]['precio']) ?></span></li>
+                    <li><span class="label">$<?php echo Commons::formatPrice($data->precio[ProductosPrecios::$PRECIO_AHORRO_ID]['precio']) ?></span></li>
                     <?php
                 } else {
                     ?>
-                    <li><span class="label">$<?php echo Commons::formatPrice($data->oferta[0]->producto->precio[ProductosPrecios::PRECIO_AHORRO_ID]) ?></span></li>
+                    <li><span class="label">$<?php echo Commons::formatPrice($data->oferta[0]->producto->precio[ProductosPrecios::$PRECIO_AHORRO_ID]) ?></span></li>
                     <?php
                 }
                 ?>
@@ -50,23 +50,23 @@ $linkToQuickView = Yii::app()->createAbsoluteUrl('/productos/quickview/' . $data
         <a href="<?php echo $linkToQuickView ?>" class="quick-view fancybox fancybox.ajax hidden-xs"> Vista rápida </a> </div>
 
     <h3 class="title"><a href="<?php echo $linkToDetail ?>" class="preview-image"><?php echo $data->etiqueta ?></a></h3>
-    <span class="price lista">Precio de lista: $<?php echo Commons::formatPrice($data->precio[ProductosPrecios::PRECIO_TARJETA_ID]['precio']) ?></span>
+    <span class="price lista">Precio de lista: $<?php echo Commons::formatPrice($data->precio[ProductosPrecios::$PRECIO_TARJETA_ID]['precio']) ?></span>
     <?php if ($data->isOferta) { ?>
         <?php
         if ($data->promocion !== null) {
             ?>
-            <span class="price old">$<?php echo Commons::formatPrice($data->precio[ProductosPrecios::PRECIO_AUX_ID]['precio']) ?></span>
+            <span class="price old">$<?php echo Commons::formatPrice($data->precio[ProductosPrecios::$PRECIO_AUX_ID]['precio']) ?></span>
             <?php
         } else {
             ?>
-            <span class="price old">$<?php echo Commons::formatPrice($data->oferta[0]->producto->precio[ProductosPrecios::PRECIO_AUX_ID]) ?></span>
+            <span class="price old">$<?php echo Commons::formatPrice($data->oferta[0]->producto->precio[ProductosPrecios::$PRECIO_AUX_ID]) ?></span>
             <?php
         }
         ?>
     <?php } ?>
-    <span class="price new">$<?php echo Commons::formatPrice($data->precio[ProductosPrecios::PRECIO_ONLINE_ID]['precio']) ?></span>
+    <span class="price new">$<?php echo Commons::formatPrice($data->precio[ProductosPrecios::$PRECIO_ONLINE_ID]['precio']) ?></span>
     <?php if (isset($data->cuotas_sobre_precio)) { ?>
-        <span class="price cuotas"><?php echo $data->cuotas_sobre_precio ?> x $<?php echo Commons::formatPrice($data->precio[ProductosPrecios::PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio, 2) ?></span>
+        <span class="price cuotas"><?php echo $data->cuotas_sobre_precio ?> x $<?php echo Commons::formatPrice($data->precio[ProductosPrecios::$PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio, 2) ?></span>
     <?php } ?>
     <!--rating-->
     <div class="list_rating hidden"><span class="rating"> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-3"></i> <i class="icon-star-empty"></i> </span></div>

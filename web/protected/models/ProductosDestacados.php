@@ -103,4 +103,33 @@ class ProductosDestacados extends CActiveRecord
         ));
     }
 
+    public static function seteoDestacado($producto_destacado = null, $categoria_id, $producto_id)
+    {
+        $sql = 'SELECT * FROM
+                        productos_destacados WHERE categoria_id = '.$categoria_id.'
+                        AND producto_id = '.$producto_id;
+        $des = ProductosDestacados::model()->findBySql($sql);
+        if ($producto_destacado && $des === null) {
+            $pn = new ProductosDestacados();
+            $pn->categoria_id = $categoria_id;
+            $pn->producto_id = $producto_id;
+            $pn->save();
+        } else if (!$producto_destacado && $des !== null) {
+            ProductosDestacados::model()->deleteAllByAttributes(
+                array(
+                    'categoria_id' => $categoria_id,
+                    'producto_id' => $producto_id
+                )
+            );
+        }
+    }
+
+    public static function isDestacado($producto_id, $categoria_id)
+    {
+        $sql = "SELECT * FROM productos_destacados WHERE producto_id = " . $producto_id . "
+                AND categoria_id = " . $categoria_id;
+        $destacados = ProductosDestacados::model()->findAllBySql($sql);
+
+        return count($destacados) ? 1 : 0;
+    }
 }

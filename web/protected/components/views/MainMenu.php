@@ -55,8 +55,9 @@
                     <!-- Logo -->
                     <div class="navbar-logo pull-left col-lg-3"> <a href="<?php echo Yii::app()->createAbsoluteUrl('/') ?>"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/header-logo.png" alt="RAC"></a></div>
                     <div class="navbar-welcome pull-left compact-hidden hidden-xs col-sm-6 col-lg-6">
-                        <form action="<?php echo Yii::app()->createAbsoluteUrl('/productos/search') ?>" method="GET" id="topSearchForm">
+                        <form id="searchForm" action="<?php echo Yii::app()->createAbsoluteUrl('/productos/search') ?>" method="GET" id="topSearchForm">
                             <input name="keyword" type="text" class="form-control" placeholder="Buscá por palabras y encontrá fácilmente lo que querés" />
+                            <input type="submit" class="form-control" />
                         </form>
                     </div>
                     <div class="clearfix visible-sm"></div>
@@ -71,14 +72,21 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/profile/edit') ?>">Cuenta</a></li>
                                 <li class="hidden"><a href="#">Marcados</a></li>
-                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/productos/checkout') ?>">Checkout</a></li>
+                                <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/productos/checkout') ?>">Comprar</a></li>
                                 <li class="divider"></li>
                                 <?php if (!Yii::app()->user->id) { ?>
-                                    <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/login') ?>">Login</a></li>
+                                    <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/login') ?>">Ingresar</a></li>
+                                    <li><?php echo SocialConnectModule::getHTMLLoginButton('google'); ?>  </li>
+                                    <li><?php echo SocialConnectModule::getHTMLLoginButton('facebook'); ?></li>
                                     <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/registration') ?>">Registro</a></li>
+
                                 <?php } ?>
                                 <?php if (Yii::app()->user->id) { ?>
-                                    <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/logout') ?>">Logout</a></li>
+                                    <li>
+                                        <?php 
+                                        echo SocialConnectModule::getHTMLLogoutButton();
+                                        ?>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -95,10 +103,10 @@
                                 class="btn btn-xs btn-default dropdown-toggle"
                                 data-toggle="dropdown">
                                 <span class="compact-hidden">
-                                    Carrito - <strong>$<span class="menuCartTotal"><?php echo Commons::formatPrice($cartItems['total']) ?></span></strong>
+                                    Carrito - <strong>$<span class="menuCartTotal"><?php echo Commons::formatPrice($cartItems->total) ?></span></strong>
                                 </span>
                                 <span class="icon-xcart-animate">
-                                    <span class="box menuCartItemsCount"><?php echo $cartItems['itemsCount'] ?></span>
+                                    <span class="box menuCartItemsCount"><?php echo $cartItems->itemsCount ?></span>
                                     <span class="handle"></span>
                                 </span>
                             </a>
@@ -223,7 +231,7 @@
                     <ul class="menu-list">
                       <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/profile/edit') ?>">Cuenta</a></li>
                       <li class="hidden"><a href="#">Marcados</a></li>
-                      <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/productos/checkout') ?>">Checkout</a></li>
+                      <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/productos/checkout') ?>">Comprar</a></li>
                       <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/login') ?>">Login</a></li>
                       <li><a href="<?php echo Yii::app()->createAbsoluteUrl('/user/register') ?>">Registro</a></li>
                     </ul>
@@ -240,15 +248,13 @@
                     <!-- //end Search -->
                   </div>
                 </div>
-                <div class="nav-item item-04"><a href="#"><span class="icon-xcart-white menuCartItemsCount"><?php echo $cartItems['itemsCount'] ?></span></a>
+                <div class="nav-item item-04"><a href="#"><span class="icon-xcart-white menuCartItemsCount"><?php echo $cartItems->itemsCount ?></span></a>
                   <div class="tab-content">
                     <div class="shoppingcart-box shoppingcart-box-mobile">
                         <?php
                         $this->renderFile(
                             Yii::app()->basePath.'/views/shared/_menuCartMobile.php',
-                            array(
-                                'cartItems' => $cartItems
-                            )
+                            ['cartItems' => $cartItems]
                         );
                         ?>
                     </div>

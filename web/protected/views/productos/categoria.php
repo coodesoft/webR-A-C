@@ -19,10 +19,73 @@ $this->pageTitle = Yii::app()->name . ' :: ' . $dataProvider->rawData[0]->catego
             $this->widget('CategoriasSlider');
             ?>
 
+            <?php 
+            extract($_GET);
+            $url = '/productos/';
+
+            if (isset($keyword) && $keyword != null && $keyword != '') 
+                $url .= "search/";
+            else
+                $url .= "categoria/$id";
+
+            if (isset($order) && $order != null)
+                $url.= "?order=".$order;
+
+            if (isset($pageSize) && $pageSize != null)
+                $url.= "&pageSize=".$pageSize;
+
+            if (isset($keyword) && $keyword != null && $keyword != '') 
+                $url.= "&keyword=".$keyword;
+
+            if (isset($marca) && $marca != null)
+                $url.= "&marca=".$marca;
+
+            if (isset($model) && $model != null)
+                $url.= "&model=".$model;
+            ?> 
+            <!-- Listing marcas -->
+            <?php if (sizeof($marcas) > 0) { ?>
+            <h3>MARCAS</h3>
+            <div class="products-list products-marcas products-list-small row">
+              <?php
+                $this->widget('MarcaGrid',[
+                  'marcas' => $marcas,
+                  'url'           => Yii::app()->createAbsoluteUrl($url.'&'),
+               /*   'pager'        => [
+                    'prevPageLabel' => '&laquo;',
+                    'nextPageLabel' => '&raquo;',
+                    'page'          => $page,
+                    
+                  ],*/
+                ]);
+                ?>
+            </div>
+            <?php } ?>
+
+            <!-- Listing models -->
+            <?php if (sizeof($modelos) > 0) { ?>
+            <h3>MODELOS</h3>
+            <div class="products-list products-models products-list-small row">
+              <?php
+                $this->widget('ModelGrid',[
+                  'modelos' => $modelos,
+                  'url'           => Yii::app()->createAbsoluteUrl($url),
+               /*   'pager'        => [
+                    'prevPageLabel' => '&laquo;',
+                    'nextPageLabel' => '&raquo;',
+                    'page'          => $page,
+                    
+                  ],*/
+                ]);
+                ?>
+            </div>
+             <?php } ?>
+
+             <?php if (sizeof($dataProvider->getData()) > 0) { ?>
             <!-- Filters -->
             <div class="filters-panel">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 col-lg-4"> Ordenar
+                    <div class="col-sm-6 col-md-3 col-lg-3"> Ordenar
                         <div class="btn-group btn-select sort-select">
                             <a href="#" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                                 <span class="value"><?php echo $labelOrder ?></span> <span class="caret min"></span>
@@ -37,10 +100,10 @@ $this->pageTitle = Yii::app()->name . ' :: ' . $dataProvider->rawData[0]->catego
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 hidden-sm hidden-xs">
+                    <div class="col-md-3 col-lg-3 hidden-sm hidden-xs">
                         <div class="view-mode"> Formato:&nbsp; <a href="#" class="view-grid"><span class="icon-th"></span></a> <a href="#" class="view-list"><span class="icon-th-list"></span></a> </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4 hidden-xs">
+                    <div class="col-sm-6 col-md-3 col-lg-3 hidden-xs">
                         <div class="pull-right"> Mostrar
                             <div class="btn-group btn-select perpage-select">
                                 <a href="#" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -59,64 +122,68 @@ $this->pageTitle = Yii::app()->name . ' :: ' . $dataProvider->rawData[0]->catego
                 <div class="divider"></div>
             </div>
             <!-- //end Filters -->
+            <?php } ?>
 
             <!-- Listing products -->
             <div class="products-list products-list-small row">
-                <?php
-                $this->widget('zii.widgets.CListView', array(
-                    'id' => 'productsGrid',
-                    'dataProvider' => $dataProvider,
-                    'itemView' => '_categoria',
-                    'ajaxUpdate' => false,
-                    'pagerCssClass'=>'pagination clearfix',
-                    'template' => "{pager}\n{items}\n{pager}\n{summary}",
-                    'summaryText'=>'<div class="double_line"></div>',
-                    'pager' => array(
-                        'cssFile' => Yii::app()->baseUrl . '/css/clistview.css',
-                        'header' => false,
-                        'firstPageLabel' => "",
-                        'prevPageLabel' => '&laquo;',
-                        'nextPageLabel' => '&raquo;',
-                        'lastPageLabel' => "",
-                    ),
-                ));
+              <?php
+
+                $this->widget('ProductGrid',[
+                  'dataProvider' => $dataProvider,
+                  'pager'        => [
+                    'prevPageLabel' => '&laquo;',
+                    'nextPageLabel' => '&raquo;',
+                    'page'          => $page,
+                    'url'           => Yii::app()->createAbsoluteUrl($url),
+                  ],
+                ]);
                 ?>
             </div>
         </section>
     </div>
 </section>
 <script>
+
     $(function(){
+
+         <?php
+        extract($_GET);
+
+        $url = '/productos/';
+
+        if (isset($_GET['keyword']) && $_GET['keyword'] != null && $_GET['keyword'] != '') 
+            $url .= "search/";
+        else
+            $url .= "categoria/$id";
+
+        $url.= "?page=1";
+
+        if (isset($_GET['keyword']) && $_GET['keyword'] != null && $_GET['keyword'] != '') 
+            $url.= "&keyword=".$_GET['keyword'];
+
+        if (isset($marca) && $marca != null)
+            $url.= "&marca=".$marca;
+
+        if (isset($model) && $model != null)
+            $url.= "&model=".$model
+        ?>
+
         $(document).on('click', '.perpage-select .dropdown-menu a', function(){
             var value = $(this).data('value');
-            <?php
-            extract($_GET);
-            if ($keyword != '') {
-                ?>
-                location.href = '<?php echo Yii::app()->createAbsoluteUrl("/productos/search/".$id."?page=".$page."&keyword=".$_GET['keyword']."&order=".$order."&pageSize=") ?>'+value;
-                <?php
-            } else {
-                ?>
-                location.href = '<?php echo Yii::app()->createAbsoluteUrl("/productos/categoria/".$id."?page=".$page."&keyword=".$_GET['keyword']."&order=".$order."&pageSize=") ?>'+value;
-                <?php
-            }
-            ?>
+            
+            url = '<?php echo Yii::app()->createAbsoluteUrl($url."&order=$order&pageSize=") ?>'+value;
+
+            location.href = url;
+             
         });
 
         $(document).on('click', '.sort-select .dropdown-menu a', function(){
             var value = $(this).data('value');
-            <?php
-            extract($_GET);
-            if ($keyword != '') {
-            ?>
-            location.href = '<?php echo Yii::app()->createAbsoluteUrl("/productos/search/".$id."?page=".$page."&keyword=".$_GET['keyword']."&pageSize=".$pageSize."&order=") ?>'+value;
-            <?php
-            } else {
-            ?>
-            location.href = '<?php echo Yii::app()->createAbsoluteUrl("/productos/categoria/".$id."?page=".$page."&keyword=".$_GET['keyword']."&pageSize=".$pageSize."&order=") ?>'+value;
-            <?php
-            }
-            ?>
+            
+            url = '<?php echo Yii::app()->createAbsoluteUrl($url."&pageSize=$pageSize&order=") ?>'+value;
+
+            location.href = url;
+
         });
     });
 </script>

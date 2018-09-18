@@ -5,12 +5,11 @@ class HomeMasVendidos extends CWidget {
 
     public function run() {
 
-        $destacados = Productos::getDestacados($this->limit);
-
+        $destacados = Productos::getMasVendidos($this->limit);
         $this->render('HomeMasVendidos',
-            array(
-                'destacados' => $destacados
-            )
+            [
+                'destacados' => $destacados,
+            ]
         );
     }
 

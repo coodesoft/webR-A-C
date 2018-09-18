@@ -35,7 +35,7 @@
                                 class="price new">$<?php echo Commons::formatPrice($destacado->producto->precio[15]['precio']) ?></span>
                             <?php if (isset($destacado->producto->cuotas_sobre_precio)) { ?>
                                 <span class="price cuotas"><?php echo $destacado->producto->cuotas_sobre_precio ?>
-                                    x $<?php echo Commons::formatPrice($destacado->producto->precio[ProductosPrecios::PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio, 2) ?></span>
+                                    x $<?php echo Commons::formatPrice($destacado->producto->precio[ProductosPrecios::$PRECIO_AUX_CUOTAS_SOBRE_PRECIO]->precio, 2) ?></span>
                             <?php } ?>
                         </div>
                     </li>

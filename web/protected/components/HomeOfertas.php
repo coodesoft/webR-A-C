@@ -2,25 +2,25 @@
 class HomeOfertas extends CWidget {
 
     public function run() {
-
         $promociones = Promociones::getPromociones();
 
-        $arrPromo = array();
+        $arrPromo = [];
         foreach($promociones as $promocion) {
-            $arrPromo[] = array(
+            $arrPromo[] = [
                 'categoria_id' => $promocion->categoria_id,
-                'producto_id' => $promocion->producto_id
-            );
+                'producto_id'  => $promocion->producto_id
+            ];
         }
 
         $ofertas = ProductosPrecios::getOfertas(null, null, $arrPromo);
-
-        $this->render('HomeOfertas',
-            array(
+        if (count($ofertas) || count($promociones))
+          $this->render('HomeOfertas',
+            [
                 'promociones' => $promociones,
-                'ofertas' => $ofertas
-            )
-        );
+                'ofertas'     => $ofertas
+            ]);
+        else
+          echo '';
     }
 
 }
